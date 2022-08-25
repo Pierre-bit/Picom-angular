@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  credentials = { username: 'admin1@orsys.fr', password: '12345678' };
+  constructor(
+    private service: LoginService,
+    private http: HttpClient ,
+    private router: Router
+  ){
+
+  } 
+  ngOnInit(): void {
+    this.service.login(this.credentials).subscribe(data => {console.log(data);});
+  }
   title = 'Picom';
+  
+  logout() {
+    this.http.post('http://localhost:8080/login', {}).subscribe(
+      data => {this.router.navigateByUrl("/login");}
+    );
+  }
 }
+
