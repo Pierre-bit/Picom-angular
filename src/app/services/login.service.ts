@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Utilisateur } from '../model/utilisateur';
 
@@ -12,43 +13,47 @@ export class LoginService {
   isLogin = false;
   roleAs:string|null = '';
 
-  private baseUrl = 'http://localhost:8080/login'
+  private baseUrl = 'http://localhost:8080'
   authenticated = false;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private router:Router) { }
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-        'Access-Control-Allow-Origin' : '*'
+      /*'Content-Type': 'application/json',*/
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+
     })
   }
   login(credentials:any) {
-    const cred = "username="+credentials.username+"&password="+credentials.password;
-    return this.httpClient.post(`${this.baseUrl}`,cred,this.httpOptions)
+  const httpOptionsLogin = {
+      headers: new HttpHeaders({
+        /*'Content-Type': 'application/json',*/
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin' : '*',
+        'authorization':btoa(credentials.username+':'+credentials.password)  
+      })
+    }
+    //const cred = "username="+credentials.username+"&password="+credentials.password;
+    return this.httpClient.post(`${this.baseUrl}/login`,"username="+credentials.username+"&password="+credentials.password
+    ,httpOptionsLogin)
   }
-  login2(value:string)
-  {
-    this.isLogin = true;
-    this.roleAs = value;
-    localStorage.setItem('STATE','true');
-    localStorage.setItem('ROLE', this.roleAs);
-    return of({success:this.isLogin,role:this.roleAs});
-  }
+  
 
-  /**register(user:Utilisateur)
+  register(user:Utilisateur):Observable<any>
   {
-    return this.httpClient.post(`${this.baseUrl}/
-  }*/
+    return this.httpClient.post(`${this.baseUrl}/api/client`,user,this.httpOptions);
+  }
 
   logout() {
-    this.isLogin = false;
+    /*this.isLogin = false;
     this.roleAs = '';
     localStorage.setItem('STATE','false');
     localStorage.setItem('ROLE','');
-    return of({success:this.isLogin,role:''});
+    return of({success:this.isLogin,role:''});*/
   }
 
-  isLoggedIn() {
+  /*isLoggedIn() {
     const loggedIn = localStorage.getItem('STATE');
     if(loggedIn == 'true') {
       this.isLogin = true;}
@@ -62,5 +67,5 @@ export class LoginService {
   {
     this.roleAs = localStorage.getItem('ROLE');
     return this.roleAs;
-  }
+  }*/
 }

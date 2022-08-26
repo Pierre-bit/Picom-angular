@@ -11,7 +11,7 @@ import { LoginService } from './services/login.service';
 export class AppComponent implements OnInit{
 
   
-  credentials = { username: 'admin1@orsys.fr', password: '12345678' };
+  
   constructor(
     private service: LoginService,
     private http: HttpClient ,
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    // this.service.login(this.credentials).subscribe(data => {console.log(data);});
+    
   }
   title = 'Picom';
 

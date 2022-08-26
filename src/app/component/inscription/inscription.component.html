@@ -1,27 +1,36 @@
 <div class="register-container">
-  <form (submit)="register()">
+  <form (ngSubmit)="register()">
     <div class="register-title">Inscription</div>
     <div class="form-fields">
       <div class="form-block">
         <mat-form-field appearance="outline">
           <mat-label>Nom</mat-label>
-          <input matInput placeholder="Nom" />
+          <input matInput placeholder="Nom" name="nom" 
+          [(ngModel)]="user.nom" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Prénom</mat-label>
-          <input matInput placeholder="Prénom" />
+          <input matInput placeholder="Prénom" name="prenom"
+          [(ngModel)]="user.prenom"/>
         </mat-form-field>
       </div>
       <div class="form-block">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Email" />
+          <input type="email" matInput placeholder="Email" name="email"
+          [(ngModel)]="user.email" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Mot de passe</mat-label>
-          <input type="password" matInput placeholder="Mot de passe" />
+          <input type="password" matInput placeholder="Mot de passe" name="motDePasse"
+          [(ngModel)]="user.motDePasse" />
         </mat-form-field>
       </div>
+      <mat-form-field appearance="outline">
+        <mat-label>numero de Téléphone</mat-label>
+        <input matInput placeholder="numeroDeTelephone" name="numeroDeTelephone"
+        [(ngModel)]="user.numeroDeTelephone"/>
+      </mat-form-field>
       <button mat-flat-button>S'inscrire</button>
     </div>
   </form>

@@ -9,7 +9,7 @@ import { TarifComponent } from './component/tarif/tarif.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch:'full'},
   {path:'home', component: HomeComponent},
-  {
+  /*{
     path: 'admin', component: TarifComponent,
     canActivate: [AuthGuard],
     data: {
@@ -21,7 +21,8 @@ const routes: Routes = [
     data: {
       role: 'ROLE_USER'
     }
-  },
+  },*/
+  { path: 'annonce', component: AnnonceComponent},
   {path:'**', redirectTo: '/home', pathMatch:'full'}
 
 ];

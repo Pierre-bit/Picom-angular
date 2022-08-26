@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     return this.checkUserLogin(route,url);
   }
   checkUserLogin(route: ActivatedRouteSnapshot, url: any):boolean {
-    if(this.loginService.isLoggedIn()) {
+    /*if(this.loginService.isLoggedIn()) {
       const userRole = this.loginService.getRole();
       if(route.data['role'] && route.data['role'].indexOf(userRole) === -1) {
         this.router.navigate(['/home']);
@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
       }
       return true;
     }
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home']);*/
     return false;
   }
   canActivateChild(

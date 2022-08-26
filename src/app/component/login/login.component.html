@@ -4,11 +4,13 @@
     <div class="form-fields">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" />
+        <input type="email" matInput placeholder="Email" name="username"
+        [(ngModel)]="connexion.username"/>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
-        <input type="password" matInput placeholder="Mot de passe" />
+        <input type="password" matInput placeholder="Mot de passe" name="username"
+        [(ngModel)]="connexion.password"/>
       </mat-form-field>
       <button mat-flat-button>Connexion</button>
     </div>
