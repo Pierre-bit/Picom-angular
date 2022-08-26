@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-inscription',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscriptionComponent implements OnInit {
 
+  @Output()
+  retour = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  register(){
+
+  }
+
+  retourEvent(){
+    this.retour.emit();
+  }
 }

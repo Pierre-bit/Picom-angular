@@ -16,12 +16,12 @@ export class AppComponent implements OnInit{
     private router: Router
   ){
 
-  } 
+  }
   ngOnInit(): void {
-    this.service.login(this.credentials).subscribe(data => {console.log(data);});
+    // this.service.login(this.credentials).subscribe(data => {console.log(data);});
   }
   title = 'Picom';
-  
+
   logout() {
     this.http.post('http://localhost:8080/login', {}).subscribe(
       data => {this.router.navigateByUrl("/login");}
