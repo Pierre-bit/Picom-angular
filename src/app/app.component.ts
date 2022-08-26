@@ -9,6 +9,8 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  
   credentials = { username: 'admin1@orsys.fr', password: '12345678' };
   constructor(
     private service: LoginService,
@@ -24,7 +26,7 @@ export class AppComponent implements OnInit{
   
   logout() {
     this.http.post('http://localhost:8080/login', {}).subscribe(
-      data => {this.router.navigateByUrl("/login");}
+      data => {this.router.navigateByUrl("/home");}
     );
   }
 }
