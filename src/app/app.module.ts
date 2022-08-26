@@ -6,6 +6,7 @@ import { HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTER
 import { LoginService } from './services/login.service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
+import { InscriptionComponent } from './component/inscription/inscription.component';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -19,7 +20,8 @@ export class XhrInterceptor implements HttpInterceptor {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
