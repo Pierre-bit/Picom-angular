@@ -1,1 +1,29 @@
-<p>inscription works!</p>
+<div class="register-container">
+  <form (submit)="register()">
+    <div class="register-title">Inscription</div>
+    <div class="form-fields">
+      <div class="form-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Nom" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <input matInput placeholder="Prénom" />
+        </mat-form-field>
+      </div>
+      <div class="form-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" matInput placeholder="Mot de passe" />
+        </mat-form-field>
+      </div>
+      <button mat-flat-button>S'inscrire</button>
+    </div>
+  </form>
+  <div class="retour" (click)="retourEvent()">Retour</div>
+</div>

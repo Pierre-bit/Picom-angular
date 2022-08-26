@@ -1,1 +1,16 @@
+<<<<<<< HEAD
 <p>home works!</p>
+=======
+<div class="container">
+  <div class="illustration"></div>
+  <div class="login-register">
+    <div class="logo">
+      <img src="/assets/images/logo.png" alt="Logo Picom">
+    </div>
+    <div class="component">
+      <app-login *ngIf="login_page" (register)="changePage()"></app-login>
+      <app-inscription *ngIf="!login_page" (retour)="changePage()"></app-inscription>
+    </div>
+  </div>
+</div>
+>>>>>>> dev

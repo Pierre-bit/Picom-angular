@@ -22,7 +22,7 @@ const routes: Routes = [
       role: 'ROLE_USER'
     }
   },
-  
+  {path:'**', redirectTo: '/home', pathMatch:'full'}
 
 ];
 

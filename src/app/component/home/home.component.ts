@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
+  login_page = true;
+
+>>>>>>> dev
   constructor() { }
 
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
+=======
+  changePage(){
+    this.login_page = !this.login_page;
+  }
+
+>>>>>>> dev
 }

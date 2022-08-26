@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.illustration, .login-register {
+  width: 50%;
+  height: 100%;
+}
+
+.illustration {
+  background-image: url("/assets/images/login-register.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 80%;
+}
+
+.login-register {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+}
+
+.logo img {
+  width: 90%;
+}
+
+.component {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+app-login, app-inscription {
+  width: 100%;
+  height: 100%;
+}

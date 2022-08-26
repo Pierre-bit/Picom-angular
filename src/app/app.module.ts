@@ -7,10 +7,9 @@ import { LoginService } from './services/login.service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
 import { InscriptionComponent } from './component/inscription/inscription.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './component/home/home.component';
-import { TarifComponent } from './component/tarif/tarif.component';
-import { AnnonceComponent } from './component/annonce/annonce.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -26,16 +25,15 @@ export class XhrInterceptor implements HttpInterceptor {
     AppComponent,
     LoginComponent,
     InscriptionComponent,
-    HomeComponent,
-    TarifComponent,
-    AnnonceComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     LoginService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
