@@ -1,39 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Annonce } from 'src/app/model/annonce';
 import { AnnonceService } from 'src/app/services/annonce.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-annonce',
   templateUrl: './annonce.component.html',
-  styleUrls: ['./annonce.component.css']
+  styleUrls: ['./annonce.component.css'],
+  providers: [CookieService]
 })
 export class AnnonceComponent implements OnInit {
 
+  cookies=inject(CookieService);
   annonces : Annonce[] = [];
- 
+
   constructor(
-    private annonceService: AnnonceService,
+    private loginService: LoginService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getAnnonces();
   }
 
-  private getAnnonces(){
-    this.annonceService.getAnnonceList().subscribe(data =>{ this.annonces = data});
+  logout() {
+    this.loginService.logout().subscribe({
+      next:() => {
+        sessionStorage.removeItem('user');
+        this.cookies.delete('JSESSIONID')
+        window.location.reload();
+      }
+    });
   }
-
-  /*logout() {
-    sessionStorage.removeItem('currentUser');
-    window.location.reload();
-  }*/
-
-  
-
-  /*onSubmit(){
-    console.log(this.annonce);
-    this.saveAnnonce();
-  }*/
 }
