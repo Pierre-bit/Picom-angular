@@ -46,7 +46,7 @@ export class LoginService {
   }
 
   logout() {
-    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('user');
     window.location.reload();
   }
 

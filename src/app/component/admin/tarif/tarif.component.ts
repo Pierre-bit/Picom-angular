@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tarif } from 'src/app/model/tarif';
 import { TrancheHoraire } from 'src/app/model/tranche-horaire';
 import { Zones } from 'src/app/model/zones';
@@ -14,15 +14,20 @@ import { ZonesService } from 'src/app/services/zones.service';
 })
 export class TarifComponent implements OnInit {
 
+  id!:number;
   tarif = new Tarif();
+  zone = new Zones();
   zones!: Zones[];
   trancheHoraire!: TrancheHoraire[];
+  trancheH= new TrancheHoraire();
+  
   
   constructor(
     private tarifService: TarifService,
     private zoneService: ZonesService,
     private trancheHoraireService: TrancheHoraireService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +46,25 @@ export class TarifComponent implements OnInit {
   getTrancheHoraireList()
   {
     this.trancheHoraireService.getTrancheHoraireList().subscribe(data =>{this.trancheHoraire = data;});
+  }
+
+  getOneZone()
+  {
+    this.id = this.route.snapshot.params['id'];
+
+    this.zoneService.getZoneById(this.id).subscribe(data => {
+      this.zone = data;
+    }, (error: any) => console.log(error));
+    
+  }
+
+  getOneTrancheHoraire()
+  {
+    this.id = this.route.snapshot.params['id'];
+
+    this.trancheHoraireService.getTrancheHoraireById(this.id).subscribe(data => {
+      this.trancheH = data;
+    }, (error: any) => console.log(error));
   }
 
 

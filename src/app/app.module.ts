@@ -11,8 +11,8 @@ import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AuthGuard } from './auth.guard';
-import { CreateAnnonceComponent } from './component/annonce/create-annonce/create-annonce.component';
-import { DiffusionComponent } from './component/diffusion/diffusion.component';
+
+
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -29,8 +29,8 @@ export class XhrInterceptor implements HttpInterceptor {
     LoginComponent,
     InscriptionComponent,
     HomeComponent,
-    CreateAnnonceComponent,
-    DiffusionComponent
+   
+
   ],
   imports: [
     BrowserModule,

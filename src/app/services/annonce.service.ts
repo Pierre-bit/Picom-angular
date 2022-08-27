@@ -25,9 +25,9 @@ export class AnnonceService {
   }
 }
 
-logout() {
+/*logout() {
   sessionStorage.removeItem('currentUser');
   window.location.reload();
-}
+}*/
 
 
