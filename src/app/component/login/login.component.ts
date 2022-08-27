@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   error = false;
   email = new FormControl('', [Validators.required, Validators.email]);
   motDePasse = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  user:any = {'user':'', role:Array}
 
   @Output()
   register = new EventEmitter();
@@ -38,6 +39,9 @@ export class LoginComponent implements OnInit {
       this.service.login(this.identifiants).subscribe(
         {
           next: (result) => {
+            this.user = result;
+            const session = {'email':this.user.user, 'role':this.user.role[0].authority}
+            sessionStorage.setItem('user', JSON.stringify(session))
             this.router.navigate(['/annonce'])
           },
           error: (err) => {
