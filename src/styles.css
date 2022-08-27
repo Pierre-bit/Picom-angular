@@ -50,3 +50,7 @@ button.mat-flat-button .mat-button-wrapper {
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: var(--main-color);
 }
+
+.custom_snackbar span {
+  color: #e78fb3!important;
+}

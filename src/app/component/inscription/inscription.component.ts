@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { LoginService } from 'src/app/services/login.service';
@@ -23,8 +24,10 @@ export class InscriptionComponent implements OnInit {
   nom = new FormControl('', [Validators.required]);
   prenom = new FormControl('', [Validators.required]);
   numeroDeTel = new FormControl('', [Validators.required, Validators.pattern(this.MOBILE_PATTERN)]);
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private service: LoginService, private http: HttpClient, private router: Router) { }
+  constructor(private service: LoginService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +36,7 @@ export class InscriptionComponent implements OnInit {
     if (this.email.valid && this.motDePasse.valid && this.nom.valid && this.prenom.valid && this.numeroDeTel.valid) {
       this.service.register(this.user).subscribe({
         next: (response) => {
+          this.openSnackBar()
           this.retourEvent()
         },
         error: (err) => {
@@ -40,6 +44,15 @@ export class InscriptionComponent implements OnInit {
         }
       })
     }
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Inscription réussi !', undefined, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2000,
+      panelClass:["custom_snackbar"]
+    });
   }
 
   retourEvent() {
