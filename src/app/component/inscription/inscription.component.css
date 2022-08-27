@@ -32,7 +32,7 @@ form {
 .form-block {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 button {
@@ -50,4 +50,10 @@ button {
 }
 .retour:hover {
   transform: scale(1.1);
+}
+.field-item {
+  width: 48%;
+}
+.field-phone {
+  width: 100%;
 }

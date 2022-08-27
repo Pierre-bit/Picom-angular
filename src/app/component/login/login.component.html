@@ -2,15 +2,18 @@
   <form (submit)="login()">
     <div class="login-title">Connexion</div>
     <div class="form-fields">
+      <div *ngIf="error" class="error-message">{{errorMessage}}</div>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" name="username"
-        [(ngModel)]="connexion.username"/>
+        <input type="email" matInput placeholder="Email" [formControl]="email" name="username"
+        [(ngModel)]="identifiants.username"/>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
-        <input type="password" matInput placeholder="Mot de passe" name="username"
-        [(ngModel)]="connexion.password"/>
+        <input type="password" matInput placeholder="Mot de passe" [formControl]="motDePasse" name="username"
+        [(ngModel)]="identifiants.password"/>
+        <mat-error *ngIf="motDePasse.invalid">{{getErrorMessageMdp()}}</mat-error>
       </mat-form-field>
       <button mat-flat-button>Connexion</button>
     </div>

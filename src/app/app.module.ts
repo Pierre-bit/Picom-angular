@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginService } from './services/login.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
 import { InscriptionComponent } from './component/inscription/inscription.component';
 import { HomeComponent } from './component/home/home.component';
@@ -33,7 +33,8 @@ export class XhrInterceptor implements HttpInterceptor {
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     LoginService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }

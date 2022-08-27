@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -12,36 +14,58 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   utilisateur = new Utilisateur();
-  connexion = {username:"",password:""}
-  //email= "";
-  //motDePasse  = "";
+  identifiants = { username: "", password: "" }
+  errorMessage = ""
+  error = false;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  motDePasse = new FormControl('', [Validators.required, Validators.minLength(8)]);
+
   @Output()
   register = new EventEmitter();
-  //credentials = { username: 'admin1@orsys.fr', password: '12345678' };
+
   constructor(
     private service: LoginService,
-    private http: HttpClient ,
+    private http: HttpClient,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    /*if(this.service.isLoggedIn()) {
-      this.router.navigate(['/annonce',localStorage.getItem('id')]);
+  }
+
+  login() {
+    if (this.email.valid && this.motDePasse.valid) {
+
+      this.service.login(this.identifiants).subscribe(
+        {
+          next: (result) => {
+            this.router.navigate(['/annonce'])
+          },
+          error: (err) => {
+            this.errorMessage = err.error.error;
+            this.error = true;
+          }
+        }
+      );
+
     }
-    else{
-      this.router.navigate(['/login']);
-    }*/
   }
 
-  login(){
-    //this.service.login(this.credentials).subscribe(data => {console.log(data);});
-    //this.service.email=this.Email.value
-    console.log(this.connexion);
-    this.service.login(this.connexion).subscribe(data => { this.router.navigate(['/annonce']);});
-    
-  }
-
-  registerEvent(){
+  registerEvent() {
     this.register.emit()
+  }
+
+  getErrorMessageEmail() {
+    if (this.email.hasError('required')) {
+      return 'Veuillez saisir une valeur';
+    }
+
+    return this.email.hasError('email') ? 'Email invalide' : '';
+  }
+
+  getErrorMessageMdp() {
+    if (this.motDePasse.hasError('required')) {
+      return 'Veuillez saisir une valeur';
+    }
+    return this.motDePasse.hasError('minlength') ? 'Le mot de passe doit contenir 8 caractère minimum' : '';
   }
 }

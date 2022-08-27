@@ -3,33 +3,38 @@
     <div class="register-title">Inscription</div>
     <div class="form-fields">
       <div class="form-block">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="field-item">
           <mat-label>Nom</mat-label>
-          <input matInput placeholder="Nom" name="nom" 
-          [(ngModel)]="user.nom" />
+          <input matInput placeholder="Nom" name="nom"
+          [(ngModel)]="user.nom" [formControl]="nom" />
+        <mat-error *ngIf="email.invalid">{{getErrorMessageNom()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="field-item">
           <mat-label>Prénom</mat-label>
           <input matInput placeholder="Prénom" name="prenom"
-          [(ngModel)]="user.prenom"/>
+          [(ngModel)]="user.prenom" [formControl]="prenom"/>
+          <mat-error *ngIf="email.invalid">{{getErrorMessagePrenom()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="form-block">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="field-item">
           <mat-label>Email</mat-label>
           <input type="email" matInput placeholder="Email" name="email"
-          [(ngModel)]="user.email" />
+          [(ngModel)]="user.email" [formControl]="email"/>
+          <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="field-item">
           <mat-label>Mot de passe</mat-label>
           <input type="password" matInput placeholder="Mot de passe" name="motDePasse"
-          [(ngModel)]="user.motDePasse" />
+          [(ngModel)]="user.motDePasse" [formControl]="motDePasse"/>
+          <mat-error *ngIf="email.invalid">{{getErrorMessageMdp()}}</mat-error>
         </mat-form-field>
       </div>
-      <mat-form-field appearance="outline">
-        <mat-label>numero de Téléphone</mat-label>
-        <input matInput placeholder="numeroDeTelephone" name="numeroDeTelephone"
-        [(ngModel)]="user.numeroDeTelephone"/>
+      <mat-form-field appearance="outline" class="field-phone">
+        <mat-label>N° de téléphone</mat-label>
+        <input type="tel" matInput placeholder="N° de téléphone" name="numeroDeTelephone"
+        [(ngModel)]="user.numeroDeTelephone" [formControl]="numeroDeTel"/>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageNumero()}}</mat-error>
       </mat-form-field>
       <button mat-flat-button>S'inscrire</button>
     </div>
