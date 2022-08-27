@@ -65,7 +65,7 @@ export class InscriptionComponent implements OnInit {
     if (this.motDePasse.hasError('required')) {
       return 'Veuillez saisir une valeur';
     }
-    return this.motDePasse.hasError('minlength') ? 'Le mot de passe doit contenir 8 caractère minimum' : '';
+    return this.motDePasse.hasError('minlength') ? '8 caractère minimum' : '';
   }
 
   getErrorMessageNumero() {

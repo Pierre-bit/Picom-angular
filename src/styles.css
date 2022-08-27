@@ -34,6 +34,12 @@ button.mat-flat-button {
   background-color: var(--btn-color);
   border: solid 1px var(--main-color);
   padding: 5px;
+  transition: .2s ease-in-out;
+}
+
+button:hover.mat-flat-button{
+
+  background-color: var(--main-color);
 }
 
 button.mat-flat-button .mat-button-wrapper {
