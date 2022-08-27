@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, of } from 'rxjs';
 import { Utilisateur } from '../model/utilisateur';
 
@@ -11,43 +12,38 @@ import { Utilisateur } from '../model/utilisateur';
 export class LoginService {
 
   isLogin = false;
-  roleAs:string|null = '';
+  roleAs: string | null = '';
 
   private baseUrl = 'http://localhost:8080'
   authenticated = false;
-  constructor(private httpClient:HttpClient, private router:Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   httpOptions = {
     headers: new HttpHeaders({
-      /*'Content-Type': 'application/json',*/
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Origin': '*',
 
     })
   }
-  login(credentials:any) {
-  const httpOptionsLogin = {
+  login(credentials: any) {
+    const httpOptionsLogin = {
       headers: new HttpHeaders({
-        /*'Content-Type': 'application/json',*/
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Access-Control-Allow-Origin' : '*',
-        'authorization':btoa(credentials.username+':'+credentials.password)  
+        'Access-Control-Allow-Origin': '*'
       })
     }
     //const cred = "username="+credentials.username+"&password="+credentials.password;
-    return this.httpClient.post(`${this.baseUrl}/login`,"username="+credentials.username+"&password="+credentials.password
-    ,httpOptionsLogin)
+    return this.httpClient.post(`${this.baseUrl}/login`, "username=" + credentials.username + "&password=" + credentials.password
+      , httpOptionsLogin)
   }
-  
 
-  register(user:Utilisateur):Observable<any>
-  {
-    return this.httpClient.post(`${this.baseUrl}/api/client`,user,this.httpOptions);
+
+  register(user: Utilisateur): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/api/client`, user, this.httpOptions);
   }
 
   logout() {
-    sessionStorage.removeItem('user');
-    window.location.reload();
+    return this.httpClient.post(`${this.baseUrl}/logout`, this.httpOptions);
   }
 
   /*isLoggedIn() {

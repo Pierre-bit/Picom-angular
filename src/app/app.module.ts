@@ -11,8 +11,11 @@ import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AuthGuard } from './auth.guard';
-
-
+import { CreateAnnonceComponent } from './component/annonce/create-annonce/create-annonce.component';
+import { DiffusionComponent } from './component/annonce/diffusion/diffusion.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ListAnnonceComponent } from './component/annonce/list-annonce/list-annonce.component';
+import { AnnonceComponent } from './component/annonce/annonce.component';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -28,9 +31,7 @@ export class XhrInterceptor implements HttpInterceptor {
     AppComponent,
     LoginComponent,
     InscriptionComponent,
-    HomeComponent,
-   
-
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,8 @@ export class XhrInterceptor implements HttpInterceptor {
   ],
   providers: [
     LoginService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
-    AuthGuard
+    AuthGuard,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
