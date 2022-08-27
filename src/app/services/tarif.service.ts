@@ -23,4 +23,6 @@ export class TarifService {
   getTarifById(id: number): Observable<Tarif>{
     return this.http.get<Tarif>(`${this.baseUrl}/tarif/${id}`);
   }
+
+  
 }

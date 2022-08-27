@@ -10,6 +10,9 @@ import { InscriptionComponent } from './component/inscription/inscription.compon
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { AuthGuard } from './auth.guard';
+import { CreateAnnonceComponent } from './component/annonce/create-annonce/create-annonce.component';
+import { DiffusionComponent } from './component/diffusion/diffusion.component';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
@@ -25,7 +28,9 @@ export class XhrInterceptor implements HttpInterceptor {
     AppComponent,
     LoginComponent,
     InscriptionComponent,
-    HomeComponent
+    HomeComponent,
+    CreateAnnonceComponent,
+    DiffusionComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +42,8 @@ export class XhrInterceptor implements HttpInterceptor {
     ReactiveFormsModule
   ],
   providers: [
-    LoginService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
-
+    LoginService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

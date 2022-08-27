@@ -24,3 +24,10 @@ export class AnnonceService {
     return this.http.get<Annonce>(`${this.baseUrl}/annonce/${id}`);
   }
 }
+
+logout() {
+  sessionStorage.removeItem('currentUser');
+  window.location.reload();
+}
+
+

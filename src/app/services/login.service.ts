@@ -46,11 +46,8 @@ export class LoginService {
   }
 
   logout() {
-    /*this.isLogin = false;
-    this.roleAs = '';
-    localStorage.setItem('STATE','false');
-    localStorage.setItem('ROLE','');
-    return of({success:this.isLogin,role:''});*/
+    sessionStorage.removeItem('currentUser');
+    window.location.reload();
   }
 
   /*isLoggedIn() {
