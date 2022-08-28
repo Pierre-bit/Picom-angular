@@ -15,6 +15,7 @@ export class AnnonceComponent implements OnInit {
 
   cookies = inject(CookieService);
   annonces: Annonce[] = [];
+  isAdmin = (JSON.parse(sessionStorage.getItem("user")!).role == 'ROLE_ADMIN')
 
   constructor(
     private loginService: LoginService,
@@ -36,5 +37,9 @@ export class AnnonceComponent implements OnInit {
 
   home() {
     this.router.navigate(['/annonce'])
+  }
+
+  admin(){
+    this.router.navigate(['/admin'])
   }
 }
