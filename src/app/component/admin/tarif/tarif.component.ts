@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Tarif } from 'src/app/model/tarif';
 import { TrancheHoraire } from 'src/app/model/tranche-horaire';
 import { Zones } from 'src/app/model/zones';
@@ -14,81 +15,64 @@ import { ZonesService } from 'src/app/services/zones.service';
   templateUrl: './tarif.component.html',
   styleUrls: ['./tarif.component.css']
 })
-export class TarifComponent implements OnInit {
+export class TarifComponent implements OnInit, AfterViewInit {
 
-  id!:number;
+  id!: number;
   tarif = new Tarif();
-  tarifs: Tarif[] = [];
-  zone = new Zones();
-  zones!: Zones[];
+  zones: Zones[] = [];
   trancheHoraire!: TrancheHoraire[];
-  trancheH= new TrancheHoraire();
-  tarifControl = new FormControl<Tarif|null>(null, Validators.required)
-  zoneControl = new FormControl<Zones|null>(null, Validators.required)
-  trancheHControl = new FormControl<TrancheHoraire|null>(null, Validators.required)  
-  dataSource!: MatTableDataSource<Tarif>;
+  tarifControl = new FormControl('', Validators.required)
+  zoneControl = new FormControl('', [Validators.required])
+  trancheHControl = new FormControl('', Validators.required)
+  dataSource = new MatTableDataSource<Tarif>;
   displayedColumns: string[] = ['id', 'zone', 'trancheHoraire', 'tarif'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(
     private tarifService: TarifService,
     private zoneService: ZonesService,
     private trancheHoraireService: TrancheHoraireService,
-    private router: Router,
-    private route: ActivatedRoute
-    ) { }
+  ) { }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit(): void {
     this.getZonesList()
     this.getTrancheHoraireList()
     this.getTarifList()
-    
   }
 
-  saveTarif()
-  {
-    this.tarif.administrateur = 2
-    this.tarifService.createTarif(this.tarif).subscribe(data =>{
-      this.tarif = data
-      this.getTarifList()
-    console.log(this.tarif);
-    })
+  saveTarif() {
+    if (this.zoneControl.valid && this.trancheHControl.valid && this.tarif.prixEnEuros > 0) {
+      this.tarifService.createTarif(this.tarif).subscribe({
+        next: (result) => {
+          this.getTarifList()
+          this.tarif.prixEnEuros = 0;
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
   }
 
-  getTarifList()
-  {
-    this.tarifService.getTarifList().subscribe(data => { 
-      console.log(data);
-      this.tarifs = data;});
+  getTarifList() {
+    this.tarifService.getTarifList().subscribe(data => {
+      this.dataSource.data = data
+    });
   }
 
-  getZonesList()
-  {
-    this.zoneService.getZoneList().subscribe(data =>{this.zones = data;});
+  getZonesList() {
+    this.zoneService.getZoneList().subscribe(data => { this.zones = data; });
   }
 
-  getTrancheHoraireList()
-  {
-    this.trancheHoraireService.getTrancheHoraireList().subscribe(data =>{this.trancheHoraire = data;});
+  getTrancheHoraireList() {
+    this.trancheHoraireService.getTrancheHoraireList().subscribe(data => { this.trancheHoraire = data; });
   }
-
-  getOneZone()
-  {
-    this.id = this.route.snapshot.params['id'];
-
-    this.zoneService.getZoneById(this.id).subscribe(data => {
-      this.zone = data;
-    }, (error: any) => console.log(error));
-    ;
-    
+  getErrorMessageZone() {
+    console.log("ok")
+    return 'Veuillez saisir une valeur';
   }
-
-  getOneTrancheHoraire()
-  {
-    this.id = this.route.snapshot.params['id'];
-
-    this.trancheHoraireService.getTrancheHoraireById(this.id).subscribe(data => {
-      this.trancheH = data;
-    }, (error: any) => console.log(error));
-  }
-
-
 }

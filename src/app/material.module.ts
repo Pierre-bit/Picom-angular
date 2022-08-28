@@ -6,21 +6,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 const module = [
   MatToolbarModule,
-   MatTableModule,
-    MatButtonModule,
-     MatFormFieldModule,
-      MatSelectModule,
-       MatInputModule,
-        MatIconModule,
-         MatSnackBarModule,
-         MatMenuModule
-        ]
+  MatTableModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule,
+  MatIconModule,
+  MatSnackBarModule,
+  MatMenuModule,
+  MatPaginatorModule
+]
 
 @NgModule({
   exports: module

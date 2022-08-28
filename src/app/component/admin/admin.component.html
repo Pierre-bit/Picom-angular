@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<div class="container-admin">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/assets/images/logo.png" alt="Logo Picom" (click)="home()"/>
+      </div>
+      <div class="logout" (click)="logout()">Déconnexion</div>
+    </div>
+  </nav>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+</div>
