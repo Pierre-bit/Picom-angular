@@ -1,7 +1,9 @@
+import { TrancheHoraire } from "./tranche-horaire";
+import { Zones } from "./zones";
+
 export class Annonce {
 
     id:number=0;
-    dateHeureCreation:Date = new Date();
     dateHeureDebut:Date = new Date();
     dateHeureFin:Date = new Date();
     contenu:String = "";
@@ -10,4 +12,9 @@ export class Annonce {
     moisExpiration:number = 0;
     cryptogramme:String = "";
     montantRegleEnEuros:number = 0;
+    client:number = 0;
+    tranchesHoraires: Array<TrancheHoraire>|null = [];	
+    zones:Array<Zones>|null = [];
+    
+
 }

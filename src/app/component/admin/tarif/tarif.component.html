@@ -16,7 +16,7 @@
   </ng-container>
   <ng-container matColumnDef="tarif">
     <th mat-header-cell *matHeaderCellDef>Tarif</th>
-    <td mat-cell *matCellDef="let tar">{{ tar.prixEnEuros }}</td>
+    <td mat-cell *matCellDef="let tar">{{ tar.prixEnEuros }} €</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -24,7 +24,7 @@
 <div>
     <mat-form-field appearance="fill">
         <mat-label>Zone</mat-label>
-        <mat-select matNativeControl [(ngModel)]="tarif.zone" [formControl]="zoneControl" required>
+        <mat-select matNativeControl required [(ngModel)]="tarif.zone" [formControl]="zoneControl" >
           <mat-option *ngFor="let zone of zones" [value]="zone.id">
             {{zone.nom}}
           </mat-option>
@@ -35,7 +35,7 @@
 <div>
     <mat-form-field appearance="fill">
         <mat-label>Tranche Horaire</mat-label>
-        <mat-select matNativeControl [(ngModel)]="tarif.trancheHoraire" [formControl]="trancheHControl" required>
+        <mat-select matNativeControl required [(ngModel)]="tarif.trancheHoraire" [formControl]="trancheHControl" >
           <mat-option *ngFor="let trancheH of trancheHoraire" [value]="trancheH.id">
             {{trancheH.debut}}
           </mat-option>

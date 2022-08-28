@@ -28,6 +28,7 @@ export class TarifComponent implements OnInit {
   trancheHControl = new FormControl<TrancheHoraire|null>(null, Validators.required)  
   dataSource!: MatTableDataSource<Tarif>;
   displayedColumns: string[] = ['id', 'zone', 'trancheHoraire', 'tarif'];
+  
   constructor(
     private tarifService: TarifService,
     private zoneService: ZonesService,

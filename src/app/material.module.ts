@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const module = [
@@ -19,7 +21,9 @@ const module = [
        MatInputModule,
         MatIconModule,
          MatSnackBarModule,
-         MatMenuModule
+         MatMenuModule,
+         MatDatepickerModule,
+         MatNativeDateModule
         ]
 
 @NgModule({

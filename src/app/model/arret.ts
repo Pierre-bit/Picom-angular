@@ -4,5 +4,6 @@ export class Arret {
     nom: String = "";
     longitude:number = 0;
     latitude:number = 0;
+    zone:number = 0;
     
 }

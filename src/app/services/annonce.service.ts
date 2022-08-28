@@ -12,15 +12,15 @@ export class AnnonceService {
   constructor(private http: HttpClient) { }
 
   getAnnonceList(): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(`${this.baseUrl}/annonces`);
+    return this.http.get<Annonce[]>(`${this.baseUrl}/annonce/home`);
   }
 
   createAnnonce(annonce: Annonce): Observable<Annonce> {
-    return this.http.post<Annonce>(`${this.baseUrl}/annonce`, annonce);
+    return this.http.post<Annonce>(`${this.baseUrl}/annonce/create-annonce`, annonce);
   }
 
   getAnnonceById(id: number): Observable<Annonce> {
-    return this.http.get<Annonce>(`${this.baseUrl}/annonce/${id}`);
+    return this.http.get<Annonce>(`${this.baseUrl}/annonce/home/${id}`);
   }
 
 }

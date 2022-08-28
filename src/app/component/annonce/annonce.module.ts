@@ -7,6 +7,7 @@ import { PaiementComponent } from './create-annonce/paiement/paiement.component'
 import { AnnonceComponent } from './annonce.component';
 import { AnnonceRoutingModule } from './annonce-routing.module';
 import { MaterialModule } from 'src/app/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { MaterialModule } from 'src/app/material.module';
   imports: [
     CommonModule,
     AnnonceRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AnnonceModule { }
