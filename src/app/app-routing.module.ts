@@ -7,30 +7,22 @@ import { LoginComponent } from './component/login/login.component';
 import { TarifComponent } from './component/admin/tarif/tarif.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch:'full'},
-  {path:'home', component: HomeComponent},
-  {path: 'annonce', loadChildren:()=>
-      import('./component/annonce/annonce.module').then((m) => m.AnnonceModule)
-
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent
   },
-  {path: 'admin',loadChildren:()=>
-    import('./component/admin/admin.module').then((m) => m.TarifModule)
+  {
+    path: 'annonce', loadChildren: () =>
+      import('./component/annonce/annonce.module').then((m) => m.AnnonceModule),
+    canActivate: [AuthGuard]
   },
-
-  /*{
-    path: 'tarif', component: TarifComponent,
+  {
+    path: 'admin', loadChildren: () =>
+      import('./component/admin/admin.module').then((m) => m.TarifModule),
     canActivate: [AuthGuard],
-    data: {
-      role: 'ROLE_ADMIN'
-    }
+    data: { role: 'ROLE_ADMIN' }
   },
-  { path: 'annonce', component: AnnonceComponent,
-    canActivate: [AuthGuard],
-    data: {
-      role: 'ROLE_USER'
-    }
-  },*/
-  {path:'**', redirectTo: '/home', pathMatch:'full'}
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 
 ];
 
