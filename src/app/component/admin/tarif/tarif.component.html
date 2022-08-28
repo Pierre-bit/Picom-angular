@@ -1,1 +1,63 @@
-<p>tarif works!</p>
+
+<h2>gestion des tarifs</h2>
+<table mat-table [dataSource]="tarifs" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id du Tarif</th>
+    <td mat-cell *matCellDef="let tar">{{ tar.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="zone">
+    <th mat-header-cell *matHeaderCellDef>Zone</th>
+    <td mat-cell *matCellDef="let tar">{{ tar.zone.nom }}</td>
+  </ng-container>
+  <ng-container matColumnDef="trancheHoraire">
+    <th mat-header-cell *matHeaderCellDef>Tranche Horaire</th>
+    <td mat-cell *matCellDef="let tar">{{ tar.trancheHoraire.debut }}</td>
+  </ng-container>
+  <ng-container matColumnDef="tarif">
+    <th mat-header-cell *matHeaderCellDef>Tarif</th>
+    <td mat-cell *matCellDef="let tar">{{ tar.prixEnEuros }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Zone</mat-label>
+        <mat-select matNativeControl [(ngModel)]="tarif.zone" [formControl]="zoneControl" required>
+          <mat-option *ngFor="let zone of zones" [value]="zone.id">
+            {{zone.nom}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="zoneControl.hasError('required')">Merci de selectionnez une zone</mat-error>
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Tranche Horaire</mat-label>
+        <mat-select matNativeControl [(ngModel)]="tarif.trancheHoraire" [formControl]="trancheHControl" required>
+          <mat-option *ngFor="let trancheH of trancheHoraire" [value]="trancheH.id">
+            {{trancheH.debut}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="trancheHControl.hasError('required')">Merci de selectionnez une tranche horaire</mat-error>
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field appearance="outline" class="field-item">
+        <mat-label>Tarif</mat-label>
+        <input matInput placeholder="Tarif" name="tarif"
+        [(ngModel)]="tarif.prixEnEuros" />
+      </mat-form-field>
+</div>
+<div>
+  <button class="btn btn-primary" (click)="saveTarif()">Ajouter Tarif</button>
+</div>
+
+
+
+  
+
+
+
+

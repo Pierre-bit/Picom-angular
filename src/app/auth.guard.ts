@@ -10,10 +10,14 @@ export class AuthGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  canActivate(): boolean 
+     {
+      if (sessionStorage.getItem('user') === 'ADMIN') {
+        return true;
+      }
+       
+      this.router.navigateByUrl('/home');
+      return false;
   }
 
 }

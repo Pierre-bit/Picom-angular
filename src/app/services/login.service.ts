@@ -48,6 +48,7 @@ export class LoginService {
   logout() {
     sessionStorage.removeItem('user');
     window.location.reload();
+    this.isLogin = false;
   }
 
   /*isLoggedIn() {
