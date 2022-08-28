@@ -1,4 +1,41 @@
-table
-{
-    width: 100%;
+.container-tarif {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tarif-title {
+  padding: 25px;
+  font-size: 32px;
+}
+
+.table {
+  width: 70%;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.form-group {
+  margin-top: 40px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-fields {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  width: 50%;
 }

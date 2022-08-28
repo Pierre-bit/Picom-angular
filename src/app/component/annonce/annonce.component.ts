@@ -13,8 +13,8 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class AnnonceComponent implements OnInit {
 
-  cookies=inject(CookieService);
-  annonces : Annonce[] = [];
+  cookies = inject(CookieService);
+  annonces: Annonce[] = [];
 
   constructor(
     private loginService: LoginService,
@@ -26,11 +26,15 @@ export class AnnonceComponent implements OnInit {
 
   logout() {
     this.loginService.logout().subscribe({
-      next:() => {
+      next: () => {
         sessionStorage.removeItem('user');
         this.cookies.delete('JSESSIONID')
         window.location.reload();
       }
     });
+  }
+
+  home() {
+    this.router.navigate(['/annonce'])
   }
 }

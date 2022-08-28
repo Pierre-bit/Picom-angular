@@ -72,9 +72,4 @@ export class LoginComponent implements OnInit {
     }
     return this.motDePasse.hasError('minlength') ? 'Le mot de passe doit contenir 8 caractère minimum' : '';
   }
-
-  
-
-  
-
 }

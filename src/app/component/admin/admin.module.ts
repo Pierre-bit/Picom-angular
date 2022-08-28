@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 import { CommonModule } from '@angular/common';
 import { TarifComponent } from './tarif/tarif.component';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -19,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' },]
 })
 export class TarifModule { }

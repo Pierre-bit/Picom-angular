@@ -10,6 +10,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 const module = [
@@ -23,9 +25,9 @@ const module = [
          MatSnackBarModule,
          MatMenuModule,
          MatDatepickerModule,
-         MatNativeDateModule
+         MatNativeDateModule,
+         MatPaginatorModule
         ]
-
 @NgModule({
   exports: module
 })

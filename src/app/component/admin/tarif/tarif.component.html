@@ -1,63 +1,83 @@
-
-<h2>gestion des tarifs</h2>
-<table mat-table [dataSource]="tarifs" class="mat-elevation-z8">
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Id du Tarif</th>
-    <td mat-cell *matCellDef="let tar">{{ tar.id }}</td>
-  </ng-container>
-  <ng-container matColumnDef="zone">
-    <th mat-header-cell *matHeaderCellDef>Zone</th>
-    <td mat-cell *matCellDef="let tar">{{ tar.zone.nom }}</td>
-  </ng-container>
-  <ng-container matColumnDef="trancheHoraire">
-    <th mat-header-cell *matHeaderCellDef>Tranche Horaire</th>
-    <td mat-cell *matCellDef="let tar">{{ tar.trancheHoraire.debut }}</td>
-  </ng-container>
-  <ng-container matColumnDef="tarif">
-    <th mat-header-cell *matHeaderCellDef>Tarif</th>
-    <td mat-cell *matCellDef="let tar">{{ tar.prixEnEuros }} €</td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-<div>
-    <mat-form-field appearance="fill">
+<div class="container-tarif">
+  <div class="tarif-title">Gestion des tarif</div>
+  <div class="table">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id du Tarif</th>
+        <td mat-cell *matCellDef="let tar">{{ tar.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="zone">
+        <th mat-header-cell *matHeaderCellDef>Zone</th>
+        <td mat-cell *matCellDef="let tar">{{ tar.zone.nom }}</td>
+      </ng-container>
+      <ng-container matColumnDef="trancheHoraire">
+        <th mat-header-cell *matHeaderCellDef>Tranche Horaire</th>
+        <td mat-cell *matCellDef="let tar">{{ tar.trancheHoraire.debut }}</td>
+      </ng-container>
+      <ng-container matColumnDef="tarif">
+        <th mat-header-cell *matHeaderCellDef>Tarif</th>
+        <td mat-cell *matCellDef="let tar">
+          {{ tar.prixEnEuros | currency: "EUR" }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  <form class="form-group" (submit)="saveTarif()">
+    <div class="form-fields">
+      <mat-form-field appearance="outline">
         <mat-label>Zone</mat-label>
-        <mat-select matNativeControl required [(ngModel)]="tarif.zone" [formControl]="zoneControl" >
+        <mat-select
+          [(ngModel)]="tarif.zone"
+          [formControl]="zoneControl"
+          required
+        >
           <mat-option *ngFor="let zone of zones" [value]="zone.id">
-            {{zone.nom}}
+            {{ zone.nom }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="zoneControl.hasError('required')">Merci de selectionnez une zone</mat-error>
-    </mat-form-field>
-</div>
-<div>
-    <mat-form-field appearance="fill">
-        <mat-label>Tranche Horaire</mat-label>
-        <mat-select matNativeControl required [(ngModel)]="tarif.trancheHoraire" [formControl]="trancheHControl" >
-          <mat-option *ngFor="let trancheH of trancheHoraire" [value]="trancheH.id">
-            {{trancheH.debut}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="trancheHControl.hasError('required')">Merci de selectionnez une tranche horaire</mat-error>
-    </mat-form-field>
-</div>
-<div>
-    <mat-form-field appearance="outline" class="field-item">
-        <mat-label>Tarif</mat-label>
-        <input matInput placeholder="Tarif" name="tarif"
-        [(ngModel)]="tarif.prixEnEuros" />
+        <mat-error *ngIf="zoneControl.hasError('required')"
+          >Sélectionnez une zone</mat-error
+        >
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tranche Horaire</mat-label>
+        <mat-select
+          matNativeControl
+          [(ngModel)]="tarif.trancheHoraire"
+          [formControl]="trancheHControl"
+        >
+          <mat-option
+            *ngFor="let trancheH of trancheHoraire"
+            [value]="trancheH.id"
+          >
+            {{ trancheH.debut }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="trancheHControl.hasError('required')"
+          >Sélectionnez une tranche horaire</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="field-item">
+      <mat-label>Tarif</mat-label>
+      <input
+        matInput
+        placeholder="Tarif"
+        name="tarif"
+        [(ngModel)]="tarif.prixEnEuros"
+      />
+      <mat-error *ngIf="tarifControl.hasError('required')"
+        >Sélectionnez une tranche horaire</mat-error
+      >
+    </mat-form-field>
+    <button mat-flat-button>Ajouter le tarif</button>
+  </form>
 </div>
-<div>
-  <button class="btn btn-primary" (click)="saveTarif()">Ajouter Tarif</button>
-</div>
-
-
-
-  
-
-
-
-
