@@ -5,6 +5,7 @@ import { AnnonceComponent } from './component/annonce/annonce.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { TarifComponent } from './component/admin/tarif/tarif.component';
+import { Roles } from './user-roles';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

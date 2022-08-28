@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/auth.guard';
 import { AdminComponent } from './admin.component';
 import { TarifComponent } from './tarif/tarif.component';
 
@@ -7,7 +8,7 @@ import { TarifComponent } from './tarif/tarif.component';
 const routes: Routes = [
   {path: '', component: AdminComponent,children: [
   {path: '', redirectTo: '/admin/tarif', pathMatch:'full'},
-  {path: 'tarif' , component: TarifComponent}, 
+  {path: 'tarif' , component: TarifComponent,}, 
   {path:'**', redirectTo: 'tarif', pathMatch:'full'}
   ]},
   ];
