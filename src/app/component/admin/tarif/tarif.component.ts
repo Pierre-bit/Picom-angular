@@ -50,6 +50,7 @@ export class TarifComponent implements OnInit, AfterViewInit {
         next: (result) => {
           this.getTarifList()
           this.tarif.prixEnEuros = 0;
+          this.tarif.administrateur = JSON.parse(sessionStorage.getItem('user')!).user.id;
         },
         error: (err) => {
           console.log(err)

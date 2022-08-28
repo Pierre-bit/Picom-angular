@@ -27,13 +27,15 @@ export class CreateAnnonceComponent implements OnInit {
   zonesSelected : Zones[] = [];
   trancheHoraire: TrancheHoraire[] = [];
   trancheHoraireSelected: TrancheHoraire[] = [];
-  dateSelected : Date = new Date();
+  dateSelected !: Date;
   zoneControl = new FormControl<Zones | null>(null, Validators.required)
   trancheHControl = new FormControl<TrancheHoraire | null>(null, Validators.required)
+  dateControl = new FormControl('', Validators.required)
   contenu = '';
   montantAPayer = 0;
   paiementPage = false;
   error = false;
+  today = new Date();
 
   constructor(
     private annonceService: AnnonceService,
@@ -59,10 +61,11 @@ export class CreateAnnonceComponent implements OnInit {
   }
 
   goToPaiement() {
-    if(this.zoneControl.valid && this.trancheHControl.valid){
+    if(this.zoneControl.valid && this.trancheHControl.valid && this.dateControl.valid){
       this.annonce.contenu = this.contenu;
       this.annonce.zones = this.zonesSelected
       this.annonce.tranchesHoraires = this.trancheHoraireSelected
+      this.annonce.client = JSON.parse(sessionStorage.getItem('user')!).user.id;
       this.paiementPage = true
     } else {
       this.error = true;
