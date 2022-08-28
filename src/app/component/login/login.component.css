@@ -43,13 +43,12 @@ form {
 
 .error-message {
   width: 100%;
-  background-color: #ff7961;
+  color: #B00020;
   padding: 10px 10px;
   margin: 10px 0;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #140d0b;
 }
 

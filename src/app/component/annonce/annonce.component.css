@@ -47,7 +47,7 @@
   transition: .2s ease-out;
 }
 
-app-list-annonce {
+.main{
   width: 100%;
   height: 100%;
 }
