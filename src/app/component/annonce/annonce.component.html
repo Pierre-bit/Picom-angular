@@ -2,9 +2,12 @@
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">
-        <img src="/assets/images/logo.png" alt="Logo Picom" (click)="home()"/>
+        <img src="/assets/images/logo.png" alt="Logo Picom" (click)="home()" />
       </div>
-      <div class="logout" (click)="logout()">Déconnexion</div>
+      <div class="right">
+        <div class="admin" *ngIf="isAdmin" (click)="admin()">Admin</div>
+        <div class="logout" (click)="logout()">Déconnexion</div>
+      </div>
     </div>
   </nav>
   <router-outlet></router-outlet>
