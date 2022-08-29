@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
 }
 
 .tarif-title {
@@ -38,4 +39,14 @@ table {
 
 button {
   width: 50%;
+}
+
+.img-illu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.img-illu img {
+  width: 400px;
 }

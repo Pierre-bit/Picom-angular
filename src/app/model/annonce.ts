@@ -5,7 +5,6 @@ export class Annonce {
 
     id:number=0;
     dateHeureDebut:Date = new Date();
-    dateHeureFin:Date = new Date();
     contenu:String = "";
     numeroCarte: String = "";
     anneeExpiration:number = 0;
@@ -13,8 +12,8 @@ export class Annonce {
     cryptogramme:String = "";
     montantRegleEnEuros:number = 0;
     client:number = 0;
-    tranchesHoraires: Array<TrancheHoraire>|null = [];	
+    tranchesHoraires: Array<TrancheHoraire>|null = [];
     zones:Array<Zones>|null = [];
-    
+
 
 }

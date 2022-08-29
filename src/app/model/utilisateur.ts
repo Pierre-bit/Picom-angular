@@ -1,7 +1,6 @@
 import { Annonce } from "./annonce";
 
 export class Utilisateur {
-
     id: number = 0;
     nom : String = "";
     prenom : String = "";

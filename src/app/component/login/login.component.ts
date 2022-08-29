@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         {
           next: (result) => {
             this.user = result;
-            const session = {'email':this.user.user, 'role':this.user.role[0].authority}
+            const session = {'user':this.user.user, 'role':this.user.role[0].authority}
             sessionStorage.setItem('user', JSON.stringify(session))
             this.router.navigate(['/annonce'])
           },
