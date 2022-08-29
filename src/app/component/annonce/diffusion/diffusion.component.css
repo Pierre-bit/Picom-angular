@@ -1,3 +1,38 @@
+.container-diffusion {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.table {
+  width: 50%;
+}
+
+.diffusion-title {
+  margin: 40px 0;
+  font-size: 32px;
+}
+
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
+
+.img-illu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.img-illu img {
+  width: 400px;
+}
+
+button {
+  margin-top: 40px;
+  width: 20%;
+}
