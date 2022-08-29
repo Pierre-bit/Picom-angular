@@ -70,3 +70,8 @@ button.mat-flat-button .mat-button-wrapper {
 .mat-typography p {
   margin: 0;
 }
+
+
+.no-data {
+  text-align: center;
+}

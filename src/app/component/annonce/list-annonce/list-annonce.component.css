@@ -32,16 +32,13 @@ td {
   min-width: 100px;
 }
 
-.inner-contenu {
-  max-width: 500px;
-  text-overflow: ellipsis;
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .date {
   text-align: right;
+}
+
+.inner-contenu {
+  text-align: justify;
+  margin-right: 10px;
 }
 
 .btn-group {

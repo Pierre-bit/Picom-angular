@@ -22,7 +22,7 @@ export class PaiementComponent implements OnInit {
   cardNumberHandle = 0;
   year = "YYYY";
   month = "MM"
-  owner = "Valentin Francoil";
+  owner = JSON.parse(sessionStorage.getItem('user')!).user.prenom+" "+JSON.parse(sessionStorage.getItem('user')!).user.nom;
   rotate = false;
   cvv = '';
   cvvShow = '';
