@@ -20,7 +20,7 @@ export class TarifComponent implements OnInit, AfterViewInit {
   id!: number;
   tarif = new Tarif();
   zones: Zones[] = [];
-  trancheHoraire!: TrancheHoraire[];
+  trancheHoraire: TrancheHoraire[] = [];
   tarifControl = new FormControl('', Validators.required)
   zoneControl = new FormControl('', [Validators.required])
   trancheHControl = new FormControl('', Validators.required)
@@ -39,9 +39,9 @@ export class TarifComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.getTarifList()
     this.getZonesList()
     this.getTrancheHoraireList()
-    this.getTarifList()
   }
 
   saveTarif() {
@@ -60,6 +60,7 @@ export class TarifComponent implements OnInit, AfterViewInit {
         next: (result) => {
           this.getTarifList()
           this.tarif.prixEnEuros = 0;
+          this.tarif.trancheHoraire = 0;
         },
         error: (err) => {
           console.log(err)
@@ -77,9 +78,10 @@ export class TarifComponent implements OnInit, AfterViewInit {
   getZonesList() {
     this.zoneService.getZoneList().subscribe(data => { this.zones = data; });
   }
-
   getTrancheHoraireList() {
-    this.trancheHoraireService.getTrancheHoraireList().subscribe(data => { this.trancheHoraire = data; });
+    this.trancheHoraireService.getTrancheHoraireList().subscribe(data => {
+      this.trancheHoraire = data;
+    });
   }
   getErrorMessageZone() {
     console.log("ok")
