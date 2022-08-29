@@ -13,14 +13,14 @@ import { AnnonceComponent } from '../annonce.component';
 })
 export class ListAnnonceComponent implements OnInit {
 
-  
-  //utilisateur = JSON.parse(sessionStorage.getItem('email')!).+" "+JSON.parse(sessionStorage.getItem('email')!).nom;
+
+  utilisateur = JSON.parse(sessionStorage.getItem('user')!).user.prenom + " " + JSON.parse(sessionStorage.getItem('user')!).user.nom;
   id: number = 0;
   dataSource = new MatTableDataSource<Annonce>;
 
-  displayedColumns: string[] = ['id','contenu','datediff']
-  @ViewChild(MatPaginator)paginator!: MatPaginator;
-  
+  displayedColumns: string[] = ['id', 'contenu', 'datediff']
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(
     private annonceService: AnnonceService,
     private router: Router
@@ -30,9 +30,8 @@ export class ListAnnonceComponent implements OnInit {
     this.annonceList();
   }
 
-  annonceList()
-  {
-    this.annonceService.getAnnonceListClient(1).subscribe(data => {
+  annonceList() {
+    this.annonceService.getAnnonceListClient(JSON.parse(sessionStorage.getItem('user')!).user.id).subscribe(data => {
       console.log(this.dataSource);
       this.dataSource.data = data;
     });
@@ -42,13 +41,11 @@ export class ListAnnonceComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  goToDiffusion()
-  {
+  goToDiffusion() {
     this.router.navigate(['annonce/diffusion']);
   }
 
-  addAnnonce()
-  {
+  addAnnonce() {
     this.router.navigate(['annonce/create-annonce']);
   }
 

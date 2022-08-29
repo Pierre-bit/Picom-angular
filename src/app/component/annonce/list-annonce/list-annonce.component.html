@@ -1,19 +1,24 @@
-<div class="container-tarif">
-    <div class="tarif-title">Annonce de utilisateur</div>
+<div class="container-list-annonce">
+  <div class="box">
+    <div class="list-an-title">Annonce de {{ utilisateur }}</div>
     <div class="table">
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>Id de l'Annonce</th>
+          <th mat-header-cell *matHeaderCellDef>#</th>
           <td mat-cell *matCellDef="let ann">{{ ann.id }}</td>
         </ng-container>
         <ng-container matColumnDef="contenu">
           <th mat-header-cell *matHeaderCellDef>Contenu</th>
-          <td mat-cell *matCellDef="let ann">{{ ann.contenu }}</td>
+          <td mat-cell *matCellDef="let ann" class="contenu">
+            <div [innerHTML]="ann.contenu" class="inner-contenu"></div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="datediff">
           <th mat-header-cell *matHeaderCellDef>Date De Diffusion</th>
-          <td mat-cell *matCellDef="let ann">{{ ann.dateHeureDebut }}</td>
+          <td mat-cell *matCellDef="let ann" class="date">
+            {{ ann.dateHeureDebut | date: "dd/MM/yyyy" }}
+          </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -21,9 +26,16 @@
       <mat-paginator
         [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
-        aria-label="Select page of periodic elements">
+        aria-label="Select page of periodic elements"
+      >
       </mat-paginator>
     </div>
-    <button (click)="addAnnonce()">Ajout d'une annonce</button>
-    <button (click)="goToDiffusion()">Ajout d'une diffusion.</button>
+    <div class="btn-group">
+      <button mat-flat-button (click)="addAnnonce()">Ajout d'une annonce</button>
+      <button mat-flat-button (click)="goToDiffusion()">Liste des diffusions</button>
+    </div>
+  </div>
+  <div class="img-illu">
+    <img src="/assets/images/illu_list_annonce.svg" alt="Image d'illustration">
+  </div>
 </div>
