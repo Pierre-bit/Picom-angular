@@ -45,12 +45,21 @@ export class TarifComponent implements OnInit, AfterViewInit {
   }
 
   saveTarif() {
-    if (this.zoneControl.valid && this.trancheHControl.valid && this.tarif.prixEnEuros > 0) {
-      this.tarifService.createTarif(this.tarif).subscribe({
+    if (this.trancheHControl.valid && this.tarif.prixEnEuros > 0) {
+      let list : Tarif[] = [];
+      this.tarif.administrateur = JSON.parse(sessionStorage.getItem('user')!).user.id;
+      this.zones.forEach(z => {
+        let curT = new Tarif();
+        curT.administrateur = this.tarif.administrateur
+        curT.prixEnEuros = this.tarif.prixEnEuros
+        curT.trancheHoraire = this.tarif.trancheHoraire
+        curT.zone = z.id
+        list.push(curT)
+      })
+      this.tarifService.createMultipleTarif(list).subscribe({
         next: (result) => {
           this.getTarifList()
           this.tarif.prixEnEuros = 0;
-          this.tarif.administrateur = JSON.parse(sessionStorage.getItem('user')!).user.id;
         },
         error: (err) => {
           console.log(err)

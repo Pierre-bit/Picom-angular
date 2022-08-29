@@ -20,6 +20,10 @@ export class TarifService {
     return this.http.post<Tarif>(`${this.baseUrl}/tarif`,tarif);
   }
 
+  createMultipleTarif(list:Tarif[]): Observable<Tarif[]>{
+    return this.http.post<Tarif[]>(`${this.baseUrl}/tarifs`,list);
+  }
+
   getTarifById(id: number): Observable<Tarif>{
     return this.http.get<Tarif>(`${this.baseUrl}/tarif/${id}`);
   }
