@@ -1,3 +1,4 @@
+import { CdkPortal } from '@angular/cdk/portal';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,25 +25,23 @@ export class CreateAnnonceComponent implements OnInit {
   annonce = new Annonce();
   id: number = 0;
   zones: Zones[] = [];
-  zonesSelected : Zones[] = [];
+  zonesSelected : [] = [];
   trancheHoraire: TrancheHoraire[] = [];
-  trancheHoraireSelected: TrancheHoraire[] = [];
+  trancheHoraireSelected: [] = [];
   dateSelected !: Date;
   zoneControl = new FormControl<Zones | null>(null, Validators.required)
   trancheHControl = new FormControl<TrancheHoraire | null>(null, Validators.required)
   dateControl = new FormControl('', Validators.required)
   contenu = '';
-  montantAPayer = 0;
   paiementPage = false;
   error = false;
+  errorEditor = false;
   today = new Date();
 
   constructor(
-    private annonceService: AnnonceService,
     private zoneService: ZonesService,
     private trancheHoraireService: TrancheHoraireService,
     private tarifService:TarifService,
-    private router: Router,
   ) {
   }
 
@@ -51,24 +50,30 @@ export class CreateAnnonceComponent implements OnInit {
     this.trancheHoraireService.getTrancheHoraireList().subscribe(data => this.trancheHoraire = data);
   }
 
-  saveAnnonce() {
-    this.annonceService.createAnnonce(this.annonce).subscribe(data => { this.annonce = data; });
-    this.goToAnnonceList();
-  }
-
-  goToAnnonceList() {
-    this.router.navigate(['/annonce/home']);
-  }
-
   goToPaiement() {
-    if(this.zoneControl.valid && this.trancheHControl.valid && this.dateControl.valid){
+    this.errorEditor = false
+    this.error = false
+    if(this.zoneControl.valid && this.trancheHControl.valid && this.dateControl.valid && this.contenu.length > 0){
       this.annonce.contenu = this.contenu;
       this.annonce.zones = this.zonesSelected
       this.annonce.tranchesHoraires = this.trancheHoraireSelected
       this.annonce.client = JSON.parse(sessionStorage.getItem('user')!).user.id;
+      this.annonce.dateHeureDebut = this.dateSelected
+      this.zonesSelected.forEach(i => {
+        this.trancheHoraireSelected.forEach(j => {
+          this.tarifService.getTarifByThAndZone(j, i).subscribe(data => {
+            this.annonce.montantRegleEnEuros += data.prixEnEuros;
+          })
+        })
+      })
       this.paiementPage = true
     } else {
-      this.error = true;
+      if(this.contenu.length == 0){
+        this.errorEditor = true
+      }
+      if(!this.zoneControl.valid || !this.trancheHControl.valid || !this.dateControl.valid){
+        this.error = true;
+      }
     }
   }
 

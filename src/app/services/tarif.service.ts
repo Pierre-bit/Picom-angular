@@ -24,5 +24,8 @@ export class TarifService {
     return this.http.get<Tarif>(`${this.baseUrl}/tarif/${id}`);
   }
 
-  
+  getTarifByThAndZone(idTh:number, idZone:number): Observable<Tarif>{
+    return this.http.get<Tarif>(`${this.baseUrl}/montant?idTh=${idTh}&idZone=${idZone}`);
+  }
+
 }

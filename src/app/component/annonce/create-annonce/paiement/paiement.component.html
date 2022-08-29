@@ -1,1 +1,138 @@
-<p>paiement works!</p>
+<div class="container-paiement">
+  <div class="paiement-title">
+    Montant à payer : {{ annonce.montantRegleEnEuros | currency: "EUR" }}
+  </div>
+  <div class="card-form">
+    <div class="card" [ngClass]="{ rotate: rotate }">
+      <div
+        class="card-face"
+        [ngStyle]="{
+          'background-image':
+            'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/assets/images/bg-card/' +
+            bg +
+            ')'
+        }"
+      >
+        <div class="card-content">
+          <div class="top">
+            <img src="/assets/images/bg-card/chip.png" alt="" id="chip" />
+            <img src="/assets/images/bg-card/visa.png" alt="" id="enterprise" />
+          </div>
+          <div class="middle">
+            <div class="card-number">
+              <span *ngFor="let char of cardNumber">{{ char }}</span>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="owner">
+              <div class="owner-text">Titulaire</div>
+              <div class="owner-card">{{ owner }}</div>
+            </div>
+            <div class="expire">
+              <div class="expire-text">Expire</div>
+              <div class="date">
+                <span class="anim" [ngClass]="{ change: changeM }">{{
+                  month
+                }}</span
+                >/<span [ngClass]="{ change: changeY }" class="anim">{{
+                  year
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="card-back"
+        [ngStyle]="{
+          'background-image':
+            'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/assets/images/bg-card/' +
+            bg +
+            ')'
+        }"
+      >
+        <div class="bandeau"></div>
+        <div class="cvv-bandeau">
+          <span>{{ cvvShow }}</span>
+        </div>
+        <div class="back-bottom">
+          <img src="/assets/images/bg-card/visa.png" alt="" id="enterprise" />
+        </div>
+      </div>
+    </div>
+    <form class="forms" (submit)="createAnnonce()">
+      <mat-form-field appearance="outline" class="number-card">
+        <mat-label>Numéro de carte</mat-label>
+        <input
+          matInput
+          placeholder="N° de carte"
+          (keypress)="keyPressNumbers($event)"
+          [(ngModel)]="cardNum"
+          (ngModelChange)="cardNumberChange($event)"
+          maxlength="16"
+          [formControl]="cardNumControl"
+          required
+        />
+        <mat-error *ngIf="cardNumControl.invalid">{{
+          getErrorMessageCn()
+        }}</mat-error>
+      </mat-form-field>
+      <div class="form-fields">
+        <div class="date-card">
+          <mat-form-field appearance="outline" class="date date-annee">
+            <mat-label class="label">Année</mat-label>
+            <mat-select
+              matNativeControl
+              required
+              [formControl]="yearControl"
+              (selectionChange)="yearChange($event.value)"
+            >
+              <mat-option *ngFor="let annee of annees" value="{{ annee }}">{{
+                annee
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="yearControl.hasError('required')" class="error-m"
+              >Sélectionnez une année</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="date date-mois">
+            <mat-label class="label">Mois</mat-label>
+            <mat-select
+              matNativeControl
+              required
+              [formControl]="monthControl"
+              (selectionChange)="monthChange($event.value)"
+            >
+              <mat-option *ngFor="let m of mois" value="{{ m }}">{{
+                m
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="monthControl.hasError('required')" class="error-m"
+              >Sélectionnez un mois</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="cvv">
+          <mat-label>CVV</mat-label>
+          <input
+            matInput
+            placeholder="CVV"
+            (focus)="rotate = true"
+            (blur)="rotate = false"
+            (keyup)="cvvChange($event)"
+            (keypress)="keyPressNumbers($event)"
+            maxlength="4"
+            [formControl]="cvvControl"
+          />
+          <mat-error *ngIf="cardNumControl.invalid">{{
+            getErrorMessageCvv()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-flat-button >Payer</button>
+    </form>
+  </div>
+  <div class="img-illu">
+    <img src="/assets/images/illu_paiement.svg" alt="Image d'illustration" />
+  </div>
+</div>

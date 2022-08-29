@@ -3,6 +3,7 @@
   <form class="form-create">
     <div class="wysiwyg">
       <div>Rédaction de l'annonce :</div>
+      <div class="error" *ngIf="errorEditor">Veuillez remplir le contenu de l'annonce</div>
       <editor [init]="{
         base_url: '/tinymce',
         suffix: '.min',
@@ -75,4 +76,4 @@
     <img src="/assets/images/illu_crea.svg" alt="Image d'illustration">
   </div>
 </div>
-<app-paiement *ngIf="paiementPage"></app-paiement>
+<app-paiement *ngIf="paiementPage" [annonce]="annonce"></app-paiement>

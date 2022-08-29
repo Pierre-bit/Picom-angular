@@ -16,7 +16,7 @@ export class AnnonceService {
   }
 
   createAnnonce(annonce: Annonce): Observable<Annonce> {
-    return this.http.post<Annonce>(`${this.baseUrl}/annonce/create-annonce`, annonce);
+    return this.http.post<Annonce>(`${this.baseUrl}/annonce`, annonce);
   }
 
   getAnnonceById(id: number): Observable<Annonce> {

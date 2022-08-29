@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID  } from '@angular/core';import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 import { CommonModule } from '@angular/common';
 import { ListAnnonceComponent } from './list-annonce/list-annonce.component';
 import { DiffusionComponent } from './diffusion/diffusion.component';
@@ -28,7 +30,8 @@ import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
     EditorModule
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
+    { provide: LOCALE_ID, useValue: 'fr-FR' }
   ]
 })
 export class AnnonceModule { }

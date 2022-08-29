@@ -1,0 +1,271 @@
+.container-paiement {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.paiement-title {
+  font-size: 32px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.card-form {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+  transition: 0.5s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+}
+
+.rotate {
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.card-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.selector {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  transition: all 0.035s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.top {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 75px;
+}
+
+#chip {
+  width: 55px;
+}
+
+#enterprise {
+  width: 75px;
+}
+
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-number {
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+
+.card-number span {
+  display: inline-block;
+  height: 18px;
+  width: 19px;
+}
+
+.card-number span:nth-child(4n) {
+  margin-right: 20px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expire {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  color: #fff;
+  font-size: 16px;
+}
+.expire-text {
+  letter-spacing: 2px;
+}
+
+.date {
+  text-transform: uppercase;
+}
+
+.owner {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  color: #fff;
+  font-size: 16px;
+}
+
+.owner-text {
+  letter-spacing: 2px;
+}
+
+.owner-card {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-back {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+}
+
+.bandeau {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cvv-bandeau {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cvv-bandeau span {
+  margin-right: 10px;
+}
+
+.back-bottom {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.anim {
+  display: inline-block;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.change {
+  transform: translateY(-15px);
+  opacity: 0;
+}
+
+.forms {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number-card {
+  width: 100%;
+}
+
+.form-fields {
+  display: flex;
+}
+
+.date-card {
+  margin-right: 10px;
+}
+
+.date {
+  max-width: 150px;
+}
+
+.date-annee {
+  margin-right: 10px;
+}
+
+.cvv {
+  max-width: 100px;
+}
+
+.label {
+  text-transform: none;
+}
+
+.img-illu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.img-illu img {
+  width: 450px;
+}
+
+button {
+  width: 50%;
+}
+
+.error-m {
+  text-transform: none;
+}
