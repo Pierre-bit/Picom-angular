@@ -24,7 +24,6 @@ const routes: Routes = [
     data: { role: 'ROLE_ADMIN' }
   },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
-
 ];
 
 @NgModule({
