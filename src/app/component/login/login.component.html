@@ -1,6 +1,6 @@
 <div class="login-container">
   <form (submit)="login()">
-    <div class="login-title">Connexion</div>
+    <div class="login-title">{{'connexion'| translate }}</div>
     <div class="form-fields">
       <div *ngIf="error" class="error-message">{{errorMessage}}</div>
       <mat-form-field appearance="outline">
@@ -10,13 +10,13 @@
         <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Mot de passe</mat-label>
-        <input type="password" matInput placeholder="Mot de passe" [formControl]="motDePasse" name="username"
+        <mat-label>{{'motDePasse'| translate}} </mat-label>
+        <input type="password" matInput placeholder="{{'motDePasse'| translate}}" [formControl]="motDePasse" name="username"
         [(ngModel)]="identifiants.password"/>
         <mat-error *ngIf="motDePasse.invalid">{{getErrorMessageMdp()}}</mat-error>
       </mat-form-field>
-      <button mat-flat-button>Connexion</button>
+      <button mat-flat-button>{{'connexion'| translate }}</button>
     </div>
   </form>
-  <div class="creation-compte" (click)="registerEvent()">Créer un compte !</div>
+  <div class="creation-compte" (click)="registerEvent()">{{'creationCompte'| translate }} !</div>
 </div>

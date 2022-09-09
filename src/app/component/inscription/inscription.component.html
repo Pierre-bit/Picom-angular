@@ -1,17 +1,17 @@
 <div class="register-container">
   <form (ngSubmit)="register()">
-    <div class="register-title">Inscription</div>
+    <div class="register-title">{{'Inscription'|translate}}</div>
     <div class="form-fields">
       <div class="form-block">
         <mat-form-field appearance="outline" class="field-item">
-          <mat-label>Nom</mat-label>
-          <input matInput placeholder="Nom" name="nom"
+          <mat-label>{{'Nom'|translate}}</mat-label>
+          <input matInput placeholder="{{'Nom'|translate}}" name="nom"
           [(ngModel)]="user.nom" [formControl]="nom" />
         <mat-error *ngIf="email.invalid">{{getErrorMessageNom()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="field-item">
-          <mat-label>Prénom</mat-label>
-          <input matInput placeholder="Prénom" name="prenom"
+          <mat-label>{{'Prenom'|translate}}</mat-label>
+          <input matInput placeholder="{{'Prenom'|translate}}" name="prenom"
           [(ngModel)]="user.prenom" [formControl]="prenom"/>
           <mat-error *ngIf="email.invalid">{{getErrorMessagePrenom()}}</mat-error>
         </mat-form-field>
@@ -24,20 +24,20 @@
           <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="field-item">
-          <mat-label>Mot de passe</mat-label>
-          <input type="password" matInput placeholder="Mot de passe" name="motDePasse"
+          <mat-label>{{'motDePasse'|translate}}</mat-label>
+          <input type="password" matInput placeholder="{{'motDePasse'|translate}}" name="motDePasse"
           [(ngModel)]="user.motDePasse" [formControl]="motDePasse"/>
           <mat-error *ngIf="email.invalid">{{getErrorMessageMdp()}}</mat-error>
         </mat-form-field>
       </div>
       <mat-form-field appearance="outline" class="field-phone">
-        <mat-label>N° de téléphone</mat-label>
+        <mat-label>{{'Tel'| translate}}</mat-label>
         <input type="tel" matInput placeholder="N° de téléphone" name="numeroDeTelephone"
         [(ngModel)]="user.numeroDeTelephone" [formControl]="numeroDeTel"/>
         <mat-error *ngIf="email.invalid">{{getErrorMessageNumero()}}</mat-error>
       </mat-form-field>
-      <button mat-flat-button>S'inscrire</button>
+      <button mat-flat-button>{{'Inscrire'|translate}}</button>
     </div>
   </form>
-  <div class="retour" (click)="retourEvent()">Retour</div>
+  <div class="retour" (click)="retourEvent()">{{'Retour'|translate}}</div>
 </div>

@@ -1,22 +1,22 @@
 <div class="container-tarif">
-  <div class="tarif-title">Gestion des tarif</div>
+  <div class="tarif-title">{{'GestionTarif'|translate}} </div>
   <div class="table">
     <table mat-table [dataSource]="dataSource">
       <!-- Position Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Id du Tarif</th>
+        <th mat-header-cell *matHeaderCellDef>{{'IdTarif'|translate}}</th>
         <td mat-cell *matCellDef="let tar">{{ tar.id }}</td>
       </ng-container>
       <ng-container matColumnDef="zone">
-        <th mat-header-cell *matHeaderCellDef>Zone</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Zone'|translate}}</th>
         <td mat-cell *matCellDef="let tar">{{ tar.zone.nom }}</td>
       </ng-container>
       <ng-container matColumnDef="trancheHoraire">
-        <th mat-header-cell *matHeaderCellDef>Tranche Horaire</th>
+        <th mat-header-cell *matHeaderCellDef>{{'TrancheHoraire'|translate}}</th>
         <td mat-cell *matCellDef="let tar">{{ tar.trancheHoraire.debut }}</td>
       </ng-container>
       <ng-container matColumnDef="tarif">
-        <th mat-header-cell *matHeaderCellDef>Tarif</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Tarif'|translate}}</th>
         <td mat-cell *matCellDef="let tar">
           {{ tar.prixEnEuros | currency: "EUR" }}
         </td>
@@ -25,7 +25,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">
-          Aucun tarif enregistré
+          {{'PasdeTarif'|translate}}
         </td>
       </tr>
     </table>
@@ -53,7 +53,7 @@
         >
       </mat-form-field> -->
       <mat-form-field appearance="outline">
-        <mat-label>Tranche Horaire</mat-label>
+        <mat-label>{{'TrancheHoraire'|translate}}</mat-label>
         <mat-select
           matNativeControl
           [(ngModel)]="tarif.trancheHoraire"
@@ -67,23 +67,23 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="trancheHControl.hasError('required')"
-          >Sélectionnez une tranche horaire</mat-error
+          >{{'ChoixTrancheH'|translate}}</mat-error
         >
       </mat-form-field>
     </div>
     <mat-form-field appearance="outline" class="field-item">
-      <mat-label>Tarif</mat-label>
+      <mat-label>{{'Tarif'|translate}}</mat-label>
       <input
         matInput
-        placeholder="Tarif"
+        placeholder="{{'Tarif'|translate}}"
         name="tarif"
         [(ngModel)]="tarif.prixEnEuros"
       />
       <mat-error *ngIf="tarifControl.hasError('required')"
-        >Sélectionnez une tranche horaire</mat-error
+        >{{'ChoixTrancheH'|translate}}</mat-error
       >
     </mat-form-field>
-    <button mat-flat-button>Ajouter le tarif</button>
+    <button mat-flat-button>{{'AjoutTarif'|translate}}</button>
   </form>
   <div class="img-illu">
     <img src="/assets/images/illu_tarif.svg" alt="Image d'illustration">

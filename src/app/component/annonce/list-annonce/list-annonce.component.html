@@ -1,7 +1,8 @@
 <div class="container-list-annonce">
   <div class="box">
-    <div class="list-an-title">Annonce de {{ utilisateur }}</div>
+    <div class="list-an-title">{{'Annonce'|translate}} {{ utilisateur }}</div>
     <div class="table">
+      
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="id">
@@ -9,13 +10,13 @@
           <td mat-cell *matCellDef="let ann">{{ ann.id }}</td>
         </ng-container>
         <ng-container matColumnDef="contenu">
-          <th mat-header-cell *matHeaderCellDef>Contenu</th>
+          <th mat-header-cell *matHeaderCellDef>{{'Contenu'|translate}}</th>
           <td mat-cell *matCellDef="let ann" class="contenu">
             <div [innerHTML]="ann.contenu" class="inner-contenu"></div>
           </td>
         </ng-container>
         <ng-container matColumnDef="datediff">
-          <th mat-header-cell *matHeaderCellDef class="date">Date De Diffusion</th>
+          <th mat-header-cell *matHeaderCellDef class="date">{{'Date'|translate}}</th>
           <td mat-cell *matCellDef="let ann" class="date">
             {{ ann.dateHeureDebut | date: "dd/MM/yyyy" }}
           </td>
@@ -24,7 +25,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">
-            Vous n'avez aucune annonce
+            {{'AucuneAnnonce'|translate}}
           </td>
         </tr>
       </table>
@@ -36,8 +37,8 @@
       </mat-paginator>
     </div>
     <div class="btn-group">
-      <button mat-flat-button (click)="addAnnonce()">Ajout d'une annonce</button>
-      <button mat-flat-button (click)="goToDiffusion()">Liste des diffusions</button>
+      <button mat-flat-button (click)="addAnnonce()">{{'AjoutAnnonce' | translate}}</button>
+      <button mat-flat-button (click)="goToDiffusion()">{{'ListeDiffusion'|translate}}</button>
     </div>
   </div>
   <div class="img-illu">

@@ -1,6 +1,6 @@
 <div class="container-paiement">
   <div class="paiement-title">
-    Montant à payer : {{ annonce.montantRegleEnEuros | currency: "EUR" }}
+    {{'Montant'|translate }}: {{ annonce.montantRegleEnEuros | currency: "EUR" }}
   </div>
   <div class="card-form">
     <div class="card" [ngClass]="{ rotate: rotate }">
@@ -25,11 +25,11 @@
           </div>
           <div class="bottom">
             <div class="owner">
-              <div class="owner-text">Titulaire</div>
+              <div class="owner-text">{{'Titulaire'|translate}}</div>
               <div class="owner-card">{{ owner }}</div>
             </div>
             <div class="expire">
-              <div class="expire-text">Expire</div>
+              <div class="expire-text">{{'Expire'|translate}}</div>
               <div class="date">
                 <span class="anim" [ngClass]="{ change: changeM }">{{
                   month
@@ -62,10 +62,10 @@
     </div>
     <form class="forms" (submit)="createAnnonce()">
       <mat-form-field appearance="outline" class="number-card">
-        <mat-label>Numéro de carte</mat-label>
+        <mat-label>{{'NumCarte'|translate}}</mat-label>
         <input
           matInput
-          placeholder="N° de carte"
+          placeholder="{{'NumCarte'|translate}}"
           (keypress)="keyPressNumbers($event)"
           [(ngModel)]="cardNum"
           (ngModelChange)="cardNumberChange($event)"
@@ -80,7 +80,7 @@
       <div class="form-fields">
         <div class="date-card">
           <mat-form-field appearance="outline" class="date date-annee">
-            <mat-label class="label">Année</mat-label>
+            <mat-label class="label">{{'Annee'|translate}}</mat-label>
             <mat-select
               matNativeControl
               required
@@ -92,11 +92,11 @@
               }}</mat-option>
             </mat-select>
             <mat-error *ngIf="yearControl.hasError('required')" class="error-m"
-              >Sélectionnez une année</mat-error
+              >{{'SelectAnnee'|translate}}</mat-error
             >
           </mat-form-field>
           <mat-form-field appearance="outline" class="date date-mois">
-            <mat-label class="label">Mois</mat-label>
+            <mat-label class="label">{{'Mois'|translate}}</mat-label>
             <mat-select
               matNativeControl
               required
@@ -108,7 +108,7 @@
               }}</mat-option>
             </mat-select>
             <mat-error *ngIf="monthControl.hasError('required')" class="error-m"
-              >Sélectionnez un mois</mat-error
+              >{{'SelectMois'|translate}}</mat-error
             >
           </mat-form-field>
         </div>
@@ -129,7 +129,7 @@
           }}</mat-error>
         </mat-form-field>
       </div>
-      <button mat-flat-button >Payer</button>
+      <button mat-flat-button >{{'Payer'|translate}}</button>
     </form>
   </div>
   <div class="img-illu">

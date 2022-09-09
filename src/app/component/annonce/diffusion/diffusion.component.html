@@ -1,14 +1,14 @@
 <div class="container-diffusion">
-  <div class="diffusion-title">Liste des diffusions</div>
+  <div class="diffusion-title">{{'ListeDiffusion'|translate}}</div>
   <div class="table">
     <table mat-table [dataSource]="dataSource">
       <!-- Position Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Id de l'annonce</th>
+        <th mat-header-cell *matHeaderCellDef>{{'IdAnnonce'|translate}}</th>
         <td mat-cell *matCellDef="let diff">{{ diff.annonce.id }}</td>
       </ng-container>
       <ng-container matColumnDef="zone">
-        <th mat-header-cell *matHeaderCellDef>Zone</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Zone'|translate}}</th>
         <td mat-cell *matCellDef="let diff">
           <div *ngFor="let zone of diff.annonce.zones">
             {{ zone.nom }}
@@ -16,11 +16,11 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="arret">
-        <th mat-header-cell *matHeaderCellDef>Arret</th>
+        <th mat-header-cell *matHeaderCellDef>{{'Arret'|translate}}</th>
         <td mat-cell *matCellDef="let diff">{{ diff.arret.nom }}</td>
       </ng-container>
       <ng-container matColumnDef="tarif">
-        <th mat-header-cell *matHeaderCellDef>Montant Reglé</th>
+        <th mat-header-cell *matHeaderCellDef>{{'MontantRegle'|translate}}</th>
         <td mat-cell *matCellDef="let diff">
           {{ diff.annonce.montantRegleEnEuros | currency: "EUR" }}
         </td>
@@ -29,7 +29,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">
-          Aucune diffusion en cours
+          {{'PasDeDiff'|translate}}
         </td>
       </tr>
     </table>
@@ -40,7 +40,7 @@
     >
     </mat-paginator>
   </div>
-  <button mat-flat-button (click)="return()">Retour</button>
+  <button mat-flat-button (click)="return()">{{'Retour'|translate}}</button>
 
   <div class="img-illu">
     <img

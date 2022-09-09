@@ -49,6 +49,10 @@ export class ListAnnonceComponent implements OnInit {
     this.router.navigate(['annonce/create-annonce']);
   }
 
+  annonceAllList() {
+    this.annonceService.getAnnonceList().subscribe(data => console.log(this.dataSource))
+  }
+
 
 }
 

@@ -6,7 +6,7 @@
       </div>
       <div class="right">
         <div class="admin" *ngIf="isAdmin" (click)="admin()">Admin</div>
-        <div class="logout" (click)="logout()">Déconnexion</div>
+        <div class="logout" (click)="logout()">{{'Deconnexion' | translate }}</div>
       </div>
     </div>
   </nav>
