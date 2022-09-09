@@ -78,10 +78,14 @@
         placeholder="{{'Tarif'|translate}}"
         name="tarif"
         [(ngModel)]="tarif.prixEnEuros"
-      />
+        [formControl]="tarifControl"
+      /> 
       <mat-error *ngIf="tarifControl.hasError('required')"
-        >{{'ChoixTrancheH'|translate}}</mat-error
+        >{{'SaisirTarif'|translate}}</mat-error
       >
+      <mat-error *ngIf="tarifControl.hasError('pattern')">
+        {{'NumberPat'|translate}}
+      </mat-error> 
     </mat-form-field>
     <button mat-flat-button>{{'AjoutTarif'|translate}}</button>
   </form>

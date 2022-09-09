@@ -7,13 +7,13 @@
           <mat-label>{{'Nom'|translate}}</mat-label>
           <input matInput placeholder="{{'Nom'|translate}}" name="nom"
           [(ngModel)]="user.nom" [formControl]="nom" />
-        <mat-error *ngIf="email.invalid">{{getErrorMessageNom()}}</mat-error>
+        <mat-error *ngIf="nom.invalid">{{getErrorMessageNom()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="field-item">
           <mat-label>{{'Prenom'|translate}}</mat-label>
           <input matInput placeholder="{{'Prenom'|translate}}" name="prenom"
           [(ngModel)]="user.prenom" [formControl]="prenom"/>
-          <mat-error *ngIf="email.invalid">{{getErrorMessagePrenom()}}</mat-error>
+          <mat-error *ngIf="prenom.invalid">{{getErrorMessagePrenom()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="form-block">
@@ -27,14 +27,14 @@
           <mat-label>{{'motDePasse'|translate}}</mat-label>
           <input type="password" matInput placeholder="{{'motDePasse'|translate}}" name="motDePasse"
           [(ngModel)]="user.motDePasse" [formControl]="motDePasse"/>
-          <mat-error *ngIf="email.invalid">{{getErrorMessageMdp()}}</mat-error>
+          <mat-error *ngIf="motDePasse.invalid">{{getErrorMessageMdp()}}</mat-error>
         </mat-form-field>
       </div>
       <mat-form-field appearance="outline" class="field-phone">
         <mat-label>{{'Tel'| translate}}</mat-label>
-        <input type="tel" matInput placeholder="N° de téléphone" name="numeroDeTelephone"
+        <input type="tel" matInput placeholder="{{'Tel'|translate}}" name="numeroDeTelephone"
         [(ngModel)]="user.numeroDeTelephone" [formControl]="numeroDeTel"/>
-        <mat-error *ngIf="email.invalid">{{getErrorMessageNumero()}}</mat-error>
+        <mat-error *ngIf="numeroDeTel.invalid">{{getErrorMessageNumero()}}</mat-error>
       </mat-form-field>
       <button mat-flat-button>{{'Inscrire'|translate}}</button>
     </div>

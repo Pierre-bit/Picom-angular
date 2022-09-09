@@ -50,6 +50,19 @@
 "Tarif":"Tariff",
 "PasdeTarif":"No tariff register",
 "ChoixTrancheH":"Select a time slot",
-"AjoutTarif":"Add tariff"
-
+"AjoutTarif":"Add tariff",
+"SaisirTarif":"Please write a tariff",
+"NumberPat":"You must write a number",
+"ERROR_NAME" : "You must write a name",
+"ERROR_FIRST_NAME" : "You must write a firstname",
+"ERROR_PASSWORD" : "You must write a password",
+"ERROR_PHONE_NUMBER" : "You must write a phone number",
+"ERROR_EMAIL" : "You must write an email adress",
+"MIN_PASSWORD" : "Your password must be at least 8 characters long",
+"INVALID_PHONE_NUMBER" : "Phone number invalid : (06)xxxxxxxx / +33(6)xxxxxxxx",
+"INVALID_EMAIL" : "Invalid email adress" ,
+"ERROR_NUM_CARD" : "Please indicate your number card",
+"MAX_NUM_CARD" : "A card number must have 16 digits",
+"ERROR_CVV" : "Please indicate your CVV number",
+"MAX_NUMBER_CVV" : "A CVV number must have 3 or 4 digits"
 }

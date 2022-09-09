@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { LoginService } from 'src/app/services/login.service';
@@ -20,14 +21,19 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   motDePasse = new FormControl('', [Validators.required, Validators.minLength(8)]);
   user:any = {'user':'', role:Array}
-
+  ERROR_EMAIL= "";
+  INVALID_EMAIL= "";
+  ERROR_PASSWORD = "";
+  MIN_PASSWORD= "";
   @Output()
   register = new EventEmitter();
+  
 
   constructor(
     private service: LoginService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -60,16 +66,34 @@ export class LoginComponent implements OnInit {
 
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
-      return 'Veuillez saisir une valeur';
+      this.translate.get('ERROR_EMAIL').subscribe( (text: string) => {
+        this.ERROR_EMAIL = text;
+      });
+      return this.ERROR_EMAIL;
     }
 
-    return this.email.hasError('email') ? 'Email invalide' : '';
+    if (this.email.hasError('email'))
+    {
+      this.translate.get('INVALID_EMAIL').subscribe( (text: string) => {
+        this. INVALID_EMAIL = text;
+      });
+    } 
+    return this.INVALID_EMAIL;
   }
 
   getErrorMessageMdp() {
     if (this.motDePasse.hasError('required')) {
-      return 'Veuillez saisir une valeur';
+      this.translate.get('ERROR_PASSWORD').subscribe( (text: string) => {
+        this.ERROR_PASSWORD = text;
+      });
+      return this.ERROR_PASSWORD;
     }
-    return this.motDePasse.hasError('minlength') ? 'Le mot de passe doit contenir 8 caractère minimum' : '';
+    if (this.motDePasse.hasError('minlength'))
+    {
+      this.translate.get('MIN_PASSWORD').subscribe( (text: string) => {
+        this.MIN_PASSWORD = text;
+      });
+    }
+    return this.MIN_PASSWORD;
   }
 }

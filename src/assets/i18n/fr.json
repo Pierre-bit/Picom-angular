@@ -50,5 +50,21 @@
 "Tarif":"Tarif",
 "PasdeTarif":"Aucun tarif enregistré",
 "ChoixTrancheH":"Sélectionnez une tranche horaire",
-"AjoutTarif":"Ajouter le tarif"
+"AjoutTarif":"Ajouter le tarif",
+"SaisirTarif":"Veuillez indiquez un tarif",
+"NumberPat":"Vous devez indiquez un nombre",
+"ERROR_NAME" : "Vous devez indiquez un nom",
+"ERROR_FIRST_NAME" : "Vous devez indiquez un prénom",
+"ERROR_PASSWORD" : "Vous devez indiquez un mot de passe",
+"ERROR_PHONE_NUMBER" : "Vous devez indiquez un numéro de téléphone",
+"ERROR_EMAIL" : "Vous devez indiquez un email ",
+"MIN_PASSWORD" : "Votre mot de passe doit avoir 8 caractères minimum ",
+"INVALID_PHONE_NUMBER" : "N° de téléphone invalide : (06)xxxxxxxx / +33(6)xxxxxxxx",
+"INVALID_EMAIL" : "Email invalide",
+"ERROR_NUM_CARD" : "Veuilez saisir votre numéro de carte",
+"MAX_NUM_CARD" : "Le numéro de carte doit contenir 16 chiffres",
+"ERROR_CVV" : "Veuilez saisir votre CVV",
+"MAX_NUMBER_CVV" : "Le CVV doit contenir 3 à 4 chiffres"
+
+
 }

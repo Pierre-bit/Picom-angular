@@ -52,5 +52,5 @@ public getAndInitTranslations(): void {
 
       this.changes.next();
     });
-}
+  }
 }

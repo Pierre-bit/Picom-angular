@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Annonce } from 'src/app/model/annonce';
 import { AnnonceService } from 'src/app/services/annonce.service';
 
@@ -29,6 +30,10 @@ export class PaiementComponent implements OnInit {
   cardNum = "";
   changeM = false;
   changeY = false;
+  ERROR_NUM_CARD = "";
+  MAX_NUM_CARD = "";
+  ERROR_CVV = "";
+  MAX_NUMBER_CVV = "";
   @Input() annonce = new Annonce();
   cardNumControl = new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]);
   cvvControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]);
@@ -36,7 +41,9 @@ export class PaiementComponent implements OnInit {
   monthControl = new FormControl<'' | null>(null, Validators.required)
 
   constructor(private annonceService:AnnonceService,
-    private router: Router,){}
+    private router: Router,
+    private translate: TranslateService
+    ){}
 
   ngOnInit(): void {
     this.bg = this.randomIntFromInterval(1, 25)+".jpeg";
@@ -113,22 +120,32 @@ export class PaiementComponent implements OnInit {
 
   getErrorMessageCn(){
     if (this.cardNumControl.hasError('required')) {
-      return 'Veuilez saisir votre numéro de carte';
+      this.translate.get('ERROR_NUM_CARD').subscribe( (text: string) => {
+        this.ERROR_NUM_CARD = text;
+      });
+      return this.ERROR_NUM_CARD;
     }
 
     if(this.cardNumControl.hasError('minlength') || this.cardNumControl.hasError('maxlength') ){
-      return 'Le numéro de carte doit contenir 16 chiffres';
+      this.translate.get('MAX_NUM_CARD').subscribe( (text: string) => {
+        this.MAX_NUM_CARD = text;
+      });
     }
-    return '';
+    return this.MAX_NUM_CARD;
   }
   getErrorMessageCvv(){
     if (this.cvvControl.hasError('required')) {
-      return 'Veuilez saisir votre CVV';
+      this.translate.get('ERROR_CVV').subscribe( (text: string) => {
+        this.ERROR_CVV= text;
+      });
+      return this.ERROR_CVV;
     }
 
     if(this.cvvControl.hasError('minlength') || this.cardNumControl.hasError('maxlength') ){
-      return 'Le CVV doit contenir 3 à 4 chiffres';
+      this.translate.get('MAX_NUMBER_CVV').subscribe( (text: string) => {
+        this.MAX_NUMBER_CVV= text;
+      });
     }
-    return '';
+    return this.MAX_NUMBER_CVV;
   }
 }
