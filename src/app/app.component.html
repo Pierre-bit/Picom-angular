@@ -1,9 +1,8 @@
 <div class="main">
-  <select class="form-control" #language (change)="translateSite(language.value)">
-    
+  <select class="form-control" #language (change)="translateSite(language.value)">  
     <option *ngFor="let localization of translateService.getLangs()" [value]="localization"
-      [selected]="localization === localization"> 
-      {{ localization }}
+      [selected]="localization === localization"
+      [ngStyle]="{'background-image':'url(../assets/images/fr.png)'}">{{ localization }}
     </option>
   </select>
   <router-outlet></router-outlet>
