@@ -20,12 +20,19 @@ export class TarifComponent implements OnInit, AfterViewInit {
   id!: number;
   tarif = new Tarif();
   zones: Zones[] = [];
+  TARIF_PATTERN = "^[0-9].{0,10}$"; 
   trancheHoraire: TrancheHoraire[] = [];
-  tarifControl = new FormControl('', Validators.required)
+  tarifControl = new FormControl('',
+  [
+   Validators.required,
+   Validators.pattern(this.TARIF_PATTERN),
+  ])
   zoneControl = new FormControl('', [Validators.required])
-  trancheHControl = new FormControl('', Validators.required)
+  trancheHControl = new FormControl('',[Validators.required])
   dataSource = new MatTableDataSource<Tarif>;
   displayedColumns: string[] = ['id', 'zone', 'trancheHoraire', 'tarif'];
+  messageError = 'Veuillez saisir une valeur';
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(

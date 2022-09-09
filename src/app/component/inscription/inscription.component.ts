@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -26,8 +27,22 @@ export class InscriptionComponent implements OnInit {
   numeroDeTel = new FormControl('', [Validators.required, Validators.pattern(this.MOBILE_PATTERN)]);
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  ERROR_NAME = ""
+  ERROR_FIRST_NAME = ""
+  ERROR_PASSWORD = "";
+  ERROR_PHONE_NUMBER = "";
+  ERROR_EMAIL = "";
+  MIN_PASSWORD = "";
+  INVALID_PHONE_NUMBER = "";
+  INVALID_EMAIL = "";
 
-  constructor(private service: LoginService, private _snackBar: MatSnackBar) { }
+
+  constructor(private service: LoginService,
+     private _snackBar: MatSnackBar,
+     private translate: TranslateService
+     ) { 
+     }
+  
 
   ngOnInit(): void {
   }
@@ -59,33 +74,67 @@ export class InscriptionComponent implements OnInit {
     this.retour.emit();
   }
   getErrorMessageNom() {
-    return 'Veuillez saisir une valeur';
+    this.translate.get('ERROR_NAME').subscribe( (text: string) => {
+      this.ERROR_NAME = text;
+    });
+    return this.ERROR_NAME;
   }
 
   getErrorMessagePrenom() {
-    return 'Veuillez saisir une valeur';
+    this.translate.get('ERROR_FIRST_NAME').subscribe( (text: string) => {
+      this.ERROR_FIRST_NAME = text;
+    });
+    return this.ERROR_FIRST_NAME;
   }
 
   getErrorMessageEmail() {
+
     if (this.email.hasError('required')) {
-      return 'Veuillez saisir une valeur';
+      this.translate.get('ERROR_EMAIL').subscribe( (text: string) => {
+        this.ERROR_EMAIL = text;
+      });
+      return this.ERROR_EMAIL;
     }
 
-    return this.email.hasError('email') ? 'Email invalide' : '';
+    if (this.email.hasError('email'))
+    {
+      this.translate.get('INVALID_EMAIL').subscribe( (text: string) => {
+        this.INVALID_EMAIL = text;
+      });
+    } 
+    return this.INVALID_EMAIL;
   }
 
   getErrorMessageMdp() {
     if (this.motDePasse.hasError('required')) {
-      return 'Veuillez saisir une valeur';
+      this.translate.get('ERROR_PASSWORD').subscribe( (text: string) => {
+        this.ERROR_PASSWORD = text;
+      });
+      return this.ERROR_PASSWORD;
     }
-    return this.motDePasse.hasError('minlength') ? '8 caractère minimum' : '';
+    if (this.motDePasse.hasError('minlength'))
+    {
+      this.translate.get('MIN_PASSWORD').subscribe( (text: string) => {
+        this.MIN_PASSWORD = text;
+      });
+    }
+    return this.MIN_PASSWORD;
   }
 
   getErrorMessageNumero() {
     if (this.numeroDeTel.hasError('required')) {
-      return 'Veuillez saisir une valeur';
+      this.translate.get('ERROR_PHONE_NUMBER').subscribe( (text: string) => {
+        this.ERROR_PHONE_NUMBER = text;
+      });
+      return this.ERROR_PHONE_NUMBER;
     }
-    return this.numeroDeTel.hasError('pattern') ? 'N° de téléphone invalide : (06)xxxxxxxx / +33(6)xxxxxxxx' : '';
+    if (this.numeroDeTel.hasError('pattern'))
+    {
+      this.translate.get('INVALID_PHONE_NUMBER').subscribe( (text: string) => {
+        this.INVALID_PHONE_NUMBER= text;
+      });
+    } 
+    return this.INVALID_PHONE_NUMBER;
   }
 }
 

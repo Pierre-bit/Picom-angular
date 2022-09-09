@@ -11,6 +11,7 @@ import { AnnonceRoutingModule } from './annonce-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -27,7 +28,10 @@ import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EditorModule
+    EditorModule,
+    TranslateModule.forChild({
+      extend: true
+    })
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },

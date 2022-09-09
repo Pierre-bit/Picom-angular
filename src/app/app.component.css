@@ -2,3 +2,9 @@
   width: 100%;
   height: 100%;
 }
+.form-control {
+  top: 20px;
+  position: fixed;
+  right: 20px;
+  
+}

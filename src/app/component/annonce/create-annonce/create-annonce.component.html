@@ -1,20 +1,20 @@
 <div class="create-annonce-container" *ngIf="!paiementPage">
-  <div class="create-annonce-title">Ajout d'une annonce</div>
+  <div class="create-annonce-title">{{'AjoutAnnonce' | translate }}</div>
   <form class="form-create">
     <div class="wysiwyg">
-      <div>Rédaction de l'annonce :</div>
-      <div class="error" *ngIf="errorEditor">Veuillez remplir le contenu de l'annonce</div>
+      <div>{{'RedactionAnnonce'|translate}} :</div>
+      <div class="error" *ngIf="errorEditor">{{'ContenuAnnonce'|translate }}</div>
       <editor [init]="{
         base_url: '/tinymce',
         suffix: '.min',
         height:250
       }" class="editor" (onSelectionChange)="onSelectionChange($event)"></editor>
     </div>
-    <div class="error" *ngIf="error">Veuillez sélectionner au moins une zone et une tranche horaire ainsi qu'une date</div>
+    <div class="error" *ngIf="error">{{'ChoixZoneHoraireDate' | translate }}</div>
     <mat-stepper [linear]="true" #stepper class="stepper">
-      <mat-step label="Choisir des zones" class="step">
+      <mat-step label="{{'ChoixZone' | translate }}" class="step">
         <mat-form-field appearance="outline">
-          <mat-label>Zone</mat-label>
+          <mat-label>{{'Zone' | translate}}</mat-label>
           <mat-select
             matNativeControl
             required
@@ -27,13 +27,13 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="zoneControl.hasError('required')"
-            >Selectionnez une/plusieurs zone(s)</mat-error
+            >{{'SelectZone' | translate }} </mat-error
           >
         </mat-form-field>
       </mat-step>
-      <mat-step label="Choisir des tranches horaires">
+      <mat-step label="{{'ChoixHoraires' | translate }}">
         <mat-form-field appearance="outline">
-          <mat-label>Tranche Horaire</mat-label>
+          <mat-label>{{'TrancheHoraire' | translate}}</mat-label>
           <mat-select
             matNativeControl
             required
@@ -49,13 +49,13 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="trancheHControl.hasError('required')"
-            >Selectionnez une/plusieurs tranche(s) horaire(s)</mat-error
+            >{{'ChoixTrancheHoraire' | translate }}</mat-error
           >
         </mat-form-field>
       </mat-step>
-      <mat-step label="Choisir la date">
+      <mat-step label="{{'ChoixDate' | translate}} ">
         <mat-form-field appearance="outline">
-          <mat-label>Choose a date</mat-label>
+          <mat-label>{{'ChoixDate' | translate}}</mat-label>
           <input matInput [matDatepicker]="picker" [min]="today" [(ngModel)]="dateSelected" [formControl]="dateControl" name="date" required/>
           <mat-datepicker-toggle
             matSuffix
@@ -63,13 +63,13 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="dateControl.hasError('required')">
-            Sélectionnez une date
+            {{'SelectionDate' | translate }} 
          </mat-error>
         </mat-form-field>
       </mat-step>
     </mat-stepper>
       <button mat-flat-button (click)="goToPaiement()">
-        Continuez vers le paiement
+        {{'Paiement' | translate }} 
       </button>
   </form>
   <div class="img-illu">
