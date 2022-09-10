@@ -64,5 +64,7 @@
 "ERROR_NUM_CARD" : "Please indicate your number card",
 "MAX_NUM_CARD" : "A card number must have 16 digits",
 "ERROR_CVV" : "Please indicate your CVV number",
-"MAX_NUMBER_CVV" : "A CVV number must have 3 or 4 digits"
+"MAX_NUMBER_CVV" : "A CVV number must have 3 or 4 digits",
+"INVALID_NAME" : "Name must have only letters",
+"INVALID_FIRST_NAME":"FirstName must have only letters"
 }

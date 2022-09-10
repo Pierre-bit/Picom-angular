@@ -64,7 +64,9 @@
 "ERROR_NUM_CARD" : "Veuilez saisir votre numéro de carte",
 "MAX_NUM_CARD" : "Le numéro de carte doit contenir 16 chiffres",
 "ERROR_CVV" : "Veuilez saisir votre CVV",
-"MAX_NUMBER_CVV" : "Le CVV doit contenir 3 à 4 chiffres"
+"MAX_NUMBER_CVV" : "Le CVV doit contenir 3 à 4 chiffres",
+"INVALID_NAME" : "Le nom ne doit contenir que des lettres",
+"INVALID_FIRST_NAME":"Le prénom ne doit contenir que des lettres"
 
 
 }

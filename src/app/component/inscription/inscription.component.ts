@@ -20,10 +20,18 @@ export class InscriptionComponent implements OnInit {
   retour = new EventEmitter();
 
   MOBILE_PATTERN = /^((\+)33|0)[1-9](\d{2}){4}$/;
+  NAME_PATTERN = "^[a-zA-Z].{1,20}$";
+  FIRST_NAME_PATTERN = "^[a-zA-Z].{1,20}$";
   email = new FormControl('', [Validators.required, Validators.email]);
   motDePasse = new FormControl('', [Validators.required, Validators.minLength(8)]);
-  nom = new FormControl('', [Validators.required]);
-  prenom = new FormControl('', [Validators.required]);
+  nom = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.NAME_PATTERN)
+  ]);
+  prenom = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.FIRST_NAME_PATTERN)
+  ]);
   numeroDeTel = new FormControl('', [Validators.required, Validators.pattern(this.MOBILE_PATTERN)]);
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
@@ -35,6 +43,8 @@ export class InscriptionComponent implements OnInit {
   MIN_PASSWORD = "";
   INVALID_PHONE_NUMBER = "";
   INVALID_EMAIL = "";
+  INVALID_NAME = "";
+  INVALID_FIRST_NAME  = "";
 
 
   constructor(private service: LoginService,
@@ -74,17 +84,35 @@ export class InscriptionComponent implements OnInit {
     this.retour.emit();
   }
   getErrorMessageNom() {
+    if (this.nom.hasError('required')) {
     this.translate.get('ERROR_NAME').subscribe( (text: string) => {
       this.ERROR_NAME = text;
     });
     return this.ERROR_NAME;
+    }
+    if (this.nom.hasError('pattern'))
+    {
+      this.translate.get('INVALID_NAME').subscribe( (text: string) => {
+        this.INVALID_NAME= text;
+      });
+    } 
+    return this.INVALID_NAME;
   }
 
   getErrorMessagePrenom() {
+    if (this.prenom.hasError('required')) {
     this.translate.get('ERROR_FIRST_NAME').subscribe( (text: string) => {
       this.ERROR_FIRST_NAME = text;
     });
     return this.ERROR_FIRST_NAME;
+    }
+    if (this.prenom.hasError('pattern'))
+    {
+      this.translate.get('INVALID_FIRST_NAME').subscribe( (text: string) => {
+        this.INVALID_FIRST_NAME = text;
+      });
+    } 
+    return this.INVALID_FIRST_NAME ;
   }
 
   getErrorMessageEmail() {
